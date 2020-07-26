@@ -1,6 +1,5 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Characters/Player.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Map/Background/CloudsBack.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Map/Background/CloudsFront.png" type="Texture" id=4]
@@ -10,6 +9,14 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
 
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+} ]
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
@@ -17,9 +24,10 @@ script = ExtResource( 2 )
 position = Vector2( 8, 8 )
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="PlayerDesign" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 1 )
+frames = SubResource( 2 )
+animation = "Idle"
 centered = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
