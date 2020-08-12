@@ -55,7 +55,7 @@ static func calculate_velocity(
 	new_velocity.y += move_direction.y * acceleration.y * delta
 	
 	if move_direction.x:
-		new_velocity.x += move_direction.x * acceleration.y * delta
+		new_velocity.x += move_direction.x * acceleration.x * delta
 	
 	# If you are not moving and the character still has some speed, you will only deccelerate if the character is not stopped
 	# 0.1 is a safety check so you can avoid bugs

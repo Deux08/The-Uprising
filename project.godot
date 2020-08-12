@@ -54,10 +54,10 @@ Steering="*res://src/Autoload/Steering.gd"
 
 [display]
 
-window/size/width=720
-window/size/height=576
-window/size/test_width=720
-window/size/test_height=576
+window/size/width=640
+window/size/height=320
+window/size/test_width=640
+window/size/test_height=320
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 

@@ -17,7 +17,10 @@ func physics_process(delta: float) -> void:
 
 # This method is to enter into the state
 func enter(msg: Dictionary = {}) -> void:
+	owner.skin.loop("run", true)
 	get_parent().enter(msg)
+	
 
 func exit() -> void:
+	owner.skin.loop("run", false)
 	get_parent().exit()

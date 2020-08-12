@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/MapAsset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
@@ -7,15 +7,20 @@
 [ext_resource path="res://src/UI/debug/DebugPanel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/UI/debug/DebugDock.gd" type="Script" id=6]
 [ext_resource path="res://src/Objects/HookTarget.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Main/Arrival.gd" type="Script" id=8]
 
 [node name="Arrival" type="Node2D"]
+script = ExtResource( 8 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="DebugDock" type="MarginContainer" parent="CanvasLayer"]
 anchor_bottom = 1.0
-margin_right = 241.0
-margin_bottom = -141.0
+margin_left = 50.0
+margin_top = 60.0
+margin_right = 291.0
+margin_bottom = 175.0
+rect_scale = Vector2( 0.5, 0.5 )
 rect_pivot_offset = Vector2( -106.954, -40.357 )
 mouse_filter = 2
 theme = ExtResource( 4 )
@@ -28,31 +33,31 @@ __meta__ = {
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 225.0
-margin_bottom = 419.0
+margin_bottom = 484.0
 
 [node name="DebugPanel" parent="CanvasLayer/DebugDock/Column" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 209.0
-margin_bottom = 157.0
+margin_bottom = 196.0
 reference_path = NodePath("../../../../Player/StateMachine/Move")
 properties = PoolStringArray( "velocity", "max_speed", "acceleration" )
 
 [node name="DebugPanel2" parent="CanvasLayer/DebugDock/Column" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 165.0
+margin_top = 204.0
 margin_right = 209.0
-margin_bottom = 280.0
+margin_bottom = 332.0
 reference_path = NodePath("../../../../Player/StateMachine")
 properties = PoolStringArray( "_state_name" )
 
 [node name="DebugPanel3" parent="CanvasLayer/DebugDock/Column" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 288.0
+margin_top = 340.0
 margin_right = 209.0
-margin_bottom = 403.0
+margin_bottom = 468.0
 reference_path = NodePath("../../../../Player/StateMachine")
 properties = PoolStringArray( "_state_name" )
 
@@ -75,5 +80,8 @@ position = Vector2( 687.385, 186.927 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240.845, 270.728 )
+
+[node name="Camera2D" parent="Player" index="4"]
+limit_smoothed = true
 
 [editable path="Player"]

@@ -6,6 +6,9 @@
 [ext_resource path="res://Assets/Map/Background/BGFront.png" type="Texture" id=4]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
+scale = Vector2( 2, 2 )
+transform = Transform2D( 2, 0, 0, 2, 0, 0 )
+follow_viewport_enable = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.5, 0.5 )

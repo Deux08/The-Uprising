@@ -19,6 +19,9 @@ func enter(msg: Dictionary = {}) -> void:
 	# Object Oriented, can access object variables
 	move.max_speed = move.max_speed_default
 	move.velocity = Vector2.ZERO
+	owner.skin.loop("idle", true)
 
 func exit() -> void:
+	owner.skin.loop("idle", false)
 	get_parent().exit()
+

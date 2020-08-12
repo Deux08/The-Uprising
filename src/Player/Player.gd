@@ -2,6 +2,7 @@ extends KinematicBody2D
 class_name Player
 
 onready var state_machine: StateMachine = $StateMachine
+onready var skin: Node2D = $Skin
 
 onready var collider: CollisionShape2D = $CollisionShape2D
 

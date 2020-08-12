@@ -1,6 +1,6 @@
 extends State
 
-export var acceleration_x = 5000.0
+export var acceleration_x = 2500.0
 export var jump_impulse: = 900.0
 export var max_jump_count: = 2
 
