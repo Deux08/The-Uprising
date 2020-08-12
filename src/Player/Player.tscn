@@ -10,8 +10,8 @@
 [ext_resource path="res://src/Player/States/Hook.gd" type="Script" id=8]
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=59]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 6.81537, 14.4552 )
+[sub_resource type="CapsuleShape2D" id=1]
+height = 10.0235
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 0, 0.250271 )
@@ -22,7 +22,7 @@ script = ExtResource( 59 )
 [node name="Skin" parent="." instance=ExtResource( 7 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.0828915, 2.69289 )
+position = Vector2( -0.337763, 3.03272 )
 shape = SubResource( 1 )
 
 [node name="StateMachine" type="Node" parent="."]
@@ -31,8 +31,8 @@ initial_state = NodePath("Move/Idle")
 
 [node name="Move" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
+max_speed_default = Vector2( 500, 500 )
 acceleration_default = Vector2( 500000, 750 )
-decceleration_default = Vector2( 500, 750 )
 jump_impulse = 1000.0
 
 [node name="Idle" type="Node" parent="StateMachine/Move"]
@@ -43,12 +43,13 @@ script = ExtResource( 2 )
 
 [node name="Air" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 5 )
-acceleration_x = 2500.0
-jump_impulse = 300.0
+acceleration_x = 1500.0
 
 [node name="Hook" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
+hook_max_speed = 750.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( -0.368896, -65.9615 )
+position = Vector2( -0.368896, -58.6659 )
 current = true
+smoothing_enabled = true

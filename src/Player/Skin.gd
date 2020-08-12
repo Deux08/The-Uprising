@@ -3,6 +3,7 @@ extends Node2D
 signal animation_finished(name)
 
 onready var anim: AnimationPlayer = $AnimationPlayer
+onready var sprite: AnimatedSprite = $Alwin
 
 func _ready() -> void:
 	anim.connect("animation_finished", self, "_on_AnimationPlayer_animation_finished")

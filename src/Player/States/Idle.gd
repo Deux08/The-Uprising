@@ -1,5 +1,7 @@
 extends State
 
+var direction = "Right"
+
 func unhandled_input(event: InputEvent) -> void:
 	var move: = get_parent()
 	move.unhandled_input(event)
@@ -15,7 +17,7 @@ func physics_process(delta: float) -> void:
 func enter(msg: Dictionary = {}) -> void:
 	var move: = get_parent()
 	move.enter(msg)
-	
+
 	# Object Oriented, can access object variables
 	move.max_speed = move.max_speed_default
 	move.velocity = Vector2.ZERO

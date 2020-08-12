@@ -33,7 +33,7 @@ __meta__ = {
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 225.0
-margin_bottom = 484.0
+margin_bottom = 819.0
 
 [node name="DebugPanel" parent="CanvasLayer/DebugDock/Column" instance=ExtResource( 5 )]
 anchor_right = 0.0
@@ -68,6 +68,7 @@ format = 1
 tile_data = PoolIntArray( 1179651, 5, 0, 1179652, 5, 0, 1179653, 5, 0, 1179654, 5, 0, 1179655, 5, 0, 1179656, 5, 0, 1179657, 5, 0, 1179658, 5, 0, 1179659, 5, 0, 1179660, 5, 0, 1179661, 5, 0, 1179662, 5, 0, 1179663, 5, 0, 1179664, 5, 0, 1179665, 5, 0, 1179666, 5, 0, 1179667, 5, 0, 1179668, 5, 0, 1179669, 5, 0, 1179670, 5, 0, 1179671, 5, 0, 1179672, 5, 0, 1179673, 5, 0, 1179674, 5, 0, 1179675, 5, 0, 1179676, 5, 0, 1179677, 5, 0, 1179678, 5, 0, 1179679, 5, 0, 1179680, 5, 0, 1179681, 5, 0, 1179682, 5, 0, 1179683, 5, 0, 1179684, 5, 0, 1179685, 5, 0, 1179686, 5, 0, 1179687, 5, 0, 1179688, 5, 0, 1179689, 5, 0, 1179690, 5, 0, 1179691, 5, 0, 1179692, 5, 0, 1179693, 5, 0, 1179694, 5, 0, 1179695, 5, 0, 1179696, 5, 0, 1179697, 5, 0, 1179698, 5, 0, 1179699, 5, 0, 1179700, 5, 0, 1179701, 5, 0, 1179702, 5, 0, 1179703, 5, 0, 1179704, 5, 0, 1179705, 5, 0, 1179706, 5, 0, 1179707, 5, 0, 1179708, 5, 0, 1179709, 5, 0, 1179710, 5, 0, 1179711, 5, 0, 1179712, 5, 0 )
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 3 )]
+follow_viewport_enable = false
 
 [node name="HookTarget" parent="." instance=ExtResource( 7 )]
 position = Vector2( 405.208, 186.531 )
@@ -79,9 +80,4 @@ position = Vector2( 534.986, 186.927 )
 position = Vector2( 687.385, 186.927 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 240.845, 270.728 )
-
-[node name="Camera2D" parent="Player" index="4"]
-limit_smoothed = true
-
-[editable path="Player"]
+position = Vector2( 240.547, 270.133 )
