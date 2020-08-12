@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spr_Leap_strip.png-d3451d8009b9c84a09f42fdb54692314.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://Assets/Characters/Alwin/spr_Leap_strip.png"
-dest_files=[ "res://.import/spr_Leap_strip.png-d3451d8009b9c84a09f42fdb54692314.stex" ]
-
 [params]
 
 compress/mode=0

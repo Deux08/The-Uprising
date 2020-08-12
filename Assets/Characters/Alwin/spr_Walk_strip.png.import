@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spr_Walk_strip.png-2ddac801163dfe2567bf42cc911308d7.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://Assets/Characters/Alwin/spr_Walk_strip.png"
-dest_files=[ "res://.import/spr_Walk_strip.png-2ddac801163dfe2567bf42cc911308d7.stex" ]
-
 [params]
 
 compress/mode=0

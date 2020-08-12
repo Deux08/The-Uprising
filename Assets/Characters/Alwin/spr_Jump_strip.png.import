@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spr_Jump_strip.png-80324af95570f90b6e2d640412886896.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://Assets/Characters/Alwin/spr_Jump_strip.png"
-dest_files=[ "res://.import/spr_Jump_strip.png-80324af95570f90b6e2d640412886896.stex" ]
-
 [params]
 
 compress/mode=0

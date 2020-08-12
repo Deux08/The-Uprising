@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spr_Dash_strip.png-c6a36d628d64ce8d536a19f23ec2df1e.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://Assets/Characters/Alwin/spr_Dash_strip.png"
-dest_files=[ "res://.import/spr_Dash_strip.png-c6a36d628d64ce8d536a19f23ec2df1e.stex" ]
-
 [params]
 
 compress/mode=0

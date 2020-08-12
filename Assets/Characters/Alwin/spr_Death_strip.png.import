@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spr_Death_strip.png-3f7aaba9da1e10426d4a9964ea35a7e0.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://Assets/Characters/Alwin/spr_Death_strip.png"
-dest_files=[ "res://.import/spr_Death_strip.png-3f7aaba9da1e10426d4a9964ea35a7e0.stex" ]
-
 [params]
 
 compress/mode=0

@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spr_Taunt_strip.png-15a2d9c90b759cff6e7ffc1017ec3493.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://Assets/Characters/Alwin/spr_Taunt_strip.png"
-dest_files=[ "res://.import/spr_Taunt_strip.png-15a2d9c90b759cff6e7ffc1017ec3493.stex" ]
-
 [params]
 
 compress/mode=0

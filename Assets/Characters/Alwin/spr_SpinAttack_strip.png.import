@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spr_SpinAttack_strip.png-4e2434d84491664e264e541357c8c9ef.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://Assets/Characters/Alwin/spr_SpinAttack_strip.png"
-dest_files=[ "res://.import/spr_SpinAttack_strip.png-4e2434d84491664e264e541357c8c9ef.stex" ]
-
 [params]
 
 compress/mode=0
