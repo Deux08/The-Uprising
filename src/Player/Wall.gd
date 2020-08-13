@@ -30,13 +30,16 @@ func physics_process(delta: float) -> void:
 		_state_machine.transition_to("Move/Air", {velocity = _velocity})
 
 func enter(msg: Dictionary = {}) -> void:
+	owner.skin.loop("wall-slide", true)
 	var move = get_parent()
 	move.enter(msg)
 	
 	_wall_normal = msg.normal
 	_velocity.y = max(msg.velocity.y, -max_slide_speed)
+	
 
 func exit() -> void:
+	owner.skin.loop("wall-slide", false)
 	get_parent().exit()
 
 func jump() -> void:

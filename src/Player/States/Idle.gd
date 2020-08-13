@@ -14,6 +14,11 @@ func physics_process(delta: float) -> void:
 		_state_machine.transition_to("Move/Run")
 	elif not owner.is_on_floor():
 		_state_machine.transition_to("Move/Air")
+		
+	if move.direction == move.DIRECTION_RIGHT:
+		owner.skin.sprite.set_flip_h(false)
+	elif move.direction == move.DIRECTION_LEFT:
+		owner.skin.sprite.set_flip_h(true)
 
 # This method is to enter into the state
 func enter(msg: Dictionary = {}) -> void:
@@ -24,8 +29,7 @@ func enter(msg: Dictionary = {}) -> void:
 	move.max_speed = move.max_speed_default
 	move.velocity = Vector2.ZERO
 	owner.skin.loop("idle", true)
-
-
+	
 	if not jump_delay.is_stopped():
 		_state_machine.transition_to("Move/Air", {impulse = move.jump_impulse})
 		jump_delay.stop()

@@ -17,7 +17,8 @@
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=59]
 
 [sub_resource type="CapsuleShape2D" id=1]
-height = 10.0235
+radius = 5.61291
+height = 17.0256
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 0, 0.250271 )
@@ -86,4 +87,6 @@ script = ExtResource( 9 )
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( -0.368896, -58.6659 )
 current = true
+zoom = Vector2( 0.5, 0.5 )
+limit_smoothed = true
 smoothing_enabled = true

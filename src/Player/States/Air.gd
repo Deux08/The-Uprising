@@ -12,6 +12,7 @@ func unhandled_input(event: InputEvent) -> void:
 	var move: = get_parent()
 	
 	if event.is_action_pressed("jump"):
+		owner.skin.play("jump")
 		emit_signal("jumped")
 		if move.velocity.y >= 0.0 and jump_delay.time_left > 0.0:
 			move.velocity = calculate_jump_velocity(move.jump_impulse)
@@ -27,6 +28,11 @@ func physics_process(delta: float) -> void:
 	move.velocity = move.calculate_velocity(move.velocity, move.max_speed, move.acceleration, delta, direction)
 	move.velocity = owner.move_and_slide(move.velocity, owner.FLOOR_NORMAL)
 	Events.emit_signal("player_moved", owner)
+	
+	if move.velocity.y < 0:
+		owner.skin.play("rising")	
+	elif move.velocity.y > 0:
+		owner.skin.play("fall") 
 
 	# Landing
 	if owner.is_on_floor():
@@ -53,7 +59,8 @@ func enter(msg: Dictionary = {}) -> void:
 		controls_freeze.start()
 		move.max_speed.x = max(move.max_speed_default.x, abs(move.velocity.x))
 		move.acceleration.y = move.acceleration_default.y
-		
+	
+
 	
 	jump_delay.start()
 

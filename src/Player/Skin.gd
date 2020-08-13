@@ -5,6 +5,8 @@ signal animation_finished(name)
 onready var anim: AnimationPlayer = $AnimationPlayer
 onready var sprite: AnimatedSprite = $Alwin
 
+var _current_animation = ""
+
 func _ready() -> void:
 	anim.connect("animation_finished", self, "_on_AnimationPlayer_animation_finished")
 
@@ -12,6 +14,7 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	emit_signal("animation_finished", anim_name)
 
 func play(anim_name: String, data: Dictionary = {}) -> void:
+	_current_animation = anim_name
 	assert(anim_name in anim.get_animation_list())
 	if "from" in data:
 		position = data["from"]
@@ -19,6 +22,7 @@ func play(anim_name: String, data: Dictionary = {}) -> void:
 	anim.play(anim_name)
 
 func loop(anim_name: String, active: bool) -> void:
+	_current_animation = anim_name
 	assert(anim_name in anim.get_animation_list())
 	var animation = anim.get_animation(anim_name)
 	if active:
