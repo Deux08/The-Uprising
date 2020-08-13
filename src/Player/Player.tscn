@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/States/Run.gd" type="Script" id=2]
@@ -9,6 +9,10 @@
 [ext_resource path="res://src/Player/Skin.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Player/States/Hook.gd" type="Script" id=8]
 [ext_resource path="res://src/Player/States/Debug.gd" type="Script" id=9]
+[ext_resource path="res://src/Player/LedgeWallDetector.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Player/States/Ledge.gd" type="Script" id=11]
+[ext_resource path="res://src/Player/FloorDetector.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/Player/Wall.gd" type="Script" id=13]
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=59]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -22,6 +26,10 @@ script = ExtResource( 59 )
 
 [node name="Skin" parent="." instance=ExtResource( 7 )]
 
+[node name="LedgeWallDetector" parent="." instance=ExtResource( 10 )]
+
+[node name="FloorDetector" parent="." instance=ExtResource( 12 )]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.337763, 3.03272 )
 shape = SubResource( 1 )
@@ -33,7 +41,7 @@ initial_state = NodePath("Move/Idle")
 [node name="Move" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
 max_speed_default = Vector2( 500, 500 )
-acceleration_default = Vector2( 50000, 750 )
+acceleration_default = Vector2( 5000, 750 )
 jump_impulse = 1000.0
 
 [node name="Idle" type="Node" parent="StateMachine/Move"]
@@ -54,9 +62,15 @@ acceleration_x = 1500.0
 wait_time = 0.3
 one_shot = true
 
+[node name="Wall" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 13 )
+
 [node name="Hook" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
 hook_max_speed = 750.0
+
+[node name="Ledge" type="Node" parent="StateMachine"]
+script = ExtResource( 11 )
 
 [node name="Debug" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )

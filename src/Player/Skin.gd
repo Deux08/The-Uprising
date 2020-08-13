@@ -11,8 +11,10 @@ func _ready() -> void:
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	emit_signal("animation_finished", anim_name)
 
-func play(anim_name: String) -> void:
+func play(anim_name: String, data: Dictionary = {}) -> void:
 	assert(anim_name in anim.get_animation_list())
+	if "from" in data:
+		position = data["from"]
 	anim.stop()
 	anim.play(anim_name)
 

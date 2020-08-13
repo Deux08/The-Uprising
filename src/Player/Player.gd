@@ -8,6 +8,13 @@ onready var collider: CollisionShape2D = $CollisionShape2D
 
 onready var hook: Hook = $Hook
 
+onready var ledge_wall_detector: LedgeWallDetector = $LedgeWallDetector
+onready var floor_detector: FloorDetector = $FloorDetector
+
+# FLOOR NORMAL is a variable that affects which direction is the floor.
+# Vector2.UP is a Vector2(0,-1) value. the -1 y value indicates that the top is up and the bottom is down.
+# -1 is going up in Godot
+# Places where you might need to use FLOOR_NORMAL is in functions like move_and_slide
 const FLOOR_NORMAL: = Vector2.UP
 
 # Gonna be automatically true when the Player node is created
