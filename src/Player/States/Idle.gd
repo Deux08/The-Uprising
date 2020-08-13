@@ -1,5 +1,7 @@
 extends State
 
+onready var jump_delay: Timer = $JumpDelay
+
 var direction = "Right"
 
 func unhandled_input(event: InputEvent) -> void:
@@ -22,6 +24,12 @@ func enter(msg: Dictionary = {}) -> void:
 	move.max_speed = move.max_speed_default
 	move.velocity = Vector2.ZERO
 	owner.skin.loop("idle", true)
+
+
+	if not jump_delay.is_stopped():
+		_state_machine.transition_to("Move/Air", {impulse = move.jump_impulse})
+		jump_delay.stop()
+
 
 func exit() -> void:
 	owner.skin.loop("idle", false)

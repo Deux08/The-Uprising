@@ -8,6 +8,7 @@ onready var ray_cast: RayCast2D = $RayCast2D
 onready var arrow: Node2D = $Arrow
 onready var snap_detector: Area2D = $SnapDetector
 onready var cooldown: Timer = $Cooldown
+onready var target_circle: DrawingUtils = $TargetCirce
 
 const HOOKABLE_PHYSICS_LAYER: = 2
 

@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "DrawingUtils",
+"language": "GDScript",
+"path": "res://src/Autoload/DrawingUtils.gd"
+}, {
 "base": "Position2D",
 "class": "Hook",
 "language": "GDScript",
@@ -35,6 +40,7 @@ _global_script_classes=[ {
 "path": "res://src/Main/StateMachine/StateMachine.gd"
 } ]
 _global_script_class_icons={
+"DrawingUtils": "",
 "Hook": "res://assets/Icons/icon_hook.svg",
 "HookTarget": "",
 "Player": "",
@@ -51,7 +57,6 @@ run/main_scene="res://src/Main/Arrival.tscn"
 
 Events="*res://src/Autoload/Events.gd"
 Steering="*res://src/Autoload/Steering.gd"
-DrawingUtils="*res://src/Autoload/DrawingUtils.gd"
 
 [display]
 

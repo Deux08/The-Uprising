@@ -35,11 +35,12 @@ func physics_process(delta: float) -> void:
 
 func enter(msg: Dictionary = {}) -> void:
 	owner.hook.connect("hooked_onto_target", self, "_on_Hook_hooked_onto_target", [], CONNECT_DEFERRED)
+	$Air.connect("jumped", $Idle.jump_delay, "start")
 
 
 func exit() -> void:
 	owner.hook.disconnect("hooked_onto_target", self, "_on_Hook_hooked_onto_target")
-
+	$Air.disconnect("jumped", $Idle.jump_delay, "start")
 
 static func calculate_velocity(
 		old_velocity: Vector2,
