@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/States/Run.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/Player/Hook/Hook.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Player/Skin.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Player/States/Hook.gd" type="Script" id=8]
+[ext_resource path="res://src/Player/States/Debug.gd" type="Script" id=9]
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=59]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -48,6 +49,9 @@ acceleration_x = 1500.0
 [node name="Hook" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
 hook_max_speed = 750.0
+
+[node name="Debug" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( -0.368896, -58.6659 )

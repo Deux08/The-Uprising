@@ -18,7 +18,13 @@ func _init() -> void:
 func _ready():
 	yield(owner, "ready")
 	state.enter()
-	
+
+func _unhandled_input(event: InputEvent) -> void:
+	state.unhandled_input(event)
+
+func _physics_process(delta: float) -> void:
+	state.physics_process(delta)
+
 func transition_to(target_state_path: String, msg: Dictionary = {}) -> void:
 	if not has_node(target_state_path):
 		return
@@ -27,12 +33,6 @@ func transition_to(target_state_path: String, msg: Dictionary = {}) -> void:
 	state.exit()
 	self.state = target_state
 	state.enter(msg)
-
-func _unhandled_input(event: InputEvent) -> void:
-	state.unhandled_input(event)
-
-func _physics_process(delta: float) -> void:
-	state.physics_process(delta)
 
 func set_state(value: State) -> void:
 	state = value

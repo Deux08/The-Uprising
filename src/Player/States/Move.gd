@@ -24,7 +24,8 @@ func _on_Hook_hooked_onto_target(target_global_position: Vector2) -> void:
 func unhandled_input(event: InputEvent) -> void:
 	if owner.is_on_floor() and event.is_action_pressed("jump"):
 		_state_machine.transition_to("Move/Air", { impulse = jump_impulse })
-
+	if event.is_action_pressed("toggle_debug_move"):		
+		_state_machine.transition_to("Debug")
 
 func physics_process(delta: float) -> void:
 	velocity = calculate_velocity(velocity, max_speed, acceleration, delta, get_move_direction())
