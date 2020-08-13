@@ -3,8 +3,9 @@ extends State
 signal jumped
 
 onready var jump_delay: Timer = $JumpDelay
+onready var controls_freeze: Timer = $ControlsFreeze
 
-export var acceleration_x: = 5000.0
+export var acceleration_x: = 2500.0
 
 
 func unhandled_input(event: InputEvent) -> void:
@@ -20,7 +21,12 @@ func unhandled_input(event: InputEvent) -> void:
 
 func physics_process(delta: float) -> void:
 	var move: = get_parent()
-	move.physics_process(delta)
+	
+	# Sign function returns a value of -1 or 1 depending on the input parameter.
+	var direction: Vector2 = move.get_move_direction() if controls_freeze.is_stopped() else Vector2(sign(move.velocity.x), 1.0)
+	move.velocity = move.calculate_velocity(move.velocity, move.max_speed, move.acceleration, delta, direction)
+	move.velocity = owner.move_and_slide(move.velocity, owner.FLOOR_NORMAL)
+	Events.emit_signal("player_moved", owner)
 
 	# Landing
 	if owner.is_on_floor():
@@ -43,6 +49,12 @@ func enter(msg: Dictionary = {}) -> void:
 		move.max_speed.x = max(abs(msg.velocity.x), move.max_speed.x)
 	if "impulse" in msg:
 		move.velocity += calculate_jump_velocity(msg.impulse)
+	if "wall_jump" in msg:
+		controls_freeze.start()
+		move.max_speed.x = max(move.max_speed_default.x, abs(move.velocity.x))
+		move.acceleration.y = move.acceleration_default.y
+		
+	
 	jump_delay.start()
 
 func exit() -> void:

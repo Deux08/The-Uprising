@@ -11,6 +11,8 @@ onready var hook: Hook = $Hook
 onready var ledge_wall_detector: LedgeWallDetector = $LedgeWallDetector
 onready var floor_detector: FloorDetector = $FloorDetector
 
+onready var pass_through: Area2D = $PassThrough
+
 # FLOOR NORMAL is a variable that affects which direction is the floor.
 # Vector2.UP is a Vector2(0,-1) value. the -1 y value indicates that the top is up and the bottom is down.
 # -1 is going up in Godot
