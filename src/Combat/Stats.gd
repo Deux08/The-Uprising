@@ -20,7 +20,6 @@ export var armor: int = 1
 func _ready() -> void:
 	health = max_health
 
-
 func take_damage(hit: Hit) -> void:
 	if invulnerable:
 		return

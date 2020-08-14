@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/Combat/HealthBar.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Icons/Under.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Icons/Progress.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Icons/Over.png" type="Texture" id=4]
+
+[node name="HealthBar" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1224.0
+margin_bottom = -708.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBarUnder" type="TextureProgress" parent="."]
+anchor_left = -0.00123
+anchor_right = -0.00123
+margin_left = 0.0897903
+margin_right = 280.09
+margin_bottom = 60.0
+rect_scale = Vector2( 0.2, 0.2 )
+step = 1.0
+value = 100.0
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 3 )
+tint_progress = Color( 0.894118, 0.0823529, 0.0823529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBarOver" type="TextureProgress" parent="."]
+anchor_left = -0.00123
+anchor_right = -0.00123
+margin_left = 0.0897903
+margin_right = 280.09
+margin_bottom = 60.0
+rect_scale = Vector2( 0.2, 0.2 )
+step = 1.0
+value = 100.0
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 3 )
+tint_progress = Color( 0.2, 0.815686, 0.0941176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpdateTween" type="Tween" parent="."]
+
+[node name="PulseTween" type="Tween" parent="."]
+
+[node name="FlashTween" type="Tween" parent="."]

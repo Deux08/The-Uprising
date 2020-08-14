@@ -14,6 +14,7 @@ onready var _state_machine: = _get_state_machine(self)
 # func _ready() -> void:
 # 	set_physics_process(false)
 # 	set_process_unhandled_input(false)
+# But that is unnecessary
 
 func unhandled_input(event: InputEvent) -> void:
 	return
