@@ -23,8 +23,7 @@ func _ready() -> void:
 	timer.connect("timeout", self, "_on_Timer_timeout")
 
 
-func _draw() -> void:
-	draw_circle(Vector2.ZERO, 12.0, color)
+
 
 
 func _on_Timer_timeout() -> void:
@@ -38,7 +37,7 @@ func hooked_from(hook_position: Vector2) -> void:
 
 func set_is_active(value:bool) -> void:
 	is_active = value
-	self.color = COLOR_ACTIVE if is_active else COLOR_INACTIVE
+
 
 	if not is_active and not is_one_shot:
 		timer.start()
