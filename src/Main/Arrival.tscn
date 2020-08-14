@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/MapAsset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
@@ -8,9 +8,13 @@
 [ext_resource path="res://src/UI/debug/DebugDock.gd" type="Script" id=6]
 [ext_resource path="res://src/Objects/HookTarget.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/PassThrough.tres" type="TileSet" id=8]
+[ext_resource path="res://src/Combat/DamageSource.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 100, 5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4.30698, 62.7669 )
 
 [node name="Arrival" type="Node2D"]
 
@@ -69,8 +73,8 @@ anchor_bottom = 0.0
 margin_top = 476.0
 margin_right = 209.0
 margin_bottom = 604.0
-reference_path = NodePath("../../../../Player/Skin")
-properties = PoolStringArray( "_current_animation" )
+reference_path = NodePath("../../../../Player/Stats")
+properties = PoolStringArray( "health" )
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( -5, 0 )
@@ -107,18 +111,29 @@ position = Vector2( 594.49, -4.74058 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240.547, 270.133 )
+collision_mask = 2147483658
 
 [node name="TargetCirce" parent="Player/Hook" index="2"]
 color = Color( 0.815682, 0.859375, 0.060425, 1 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 239.868, 157.444 )
+position = Vector2( 210.311, 193.708 )
 collision_layer = 4
-collision_mask = 0
+collision_mask = 2147483652
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -14.4284, -96.77 )
+position = Vector2( 1.42777, 0.348938 )
 shape = SubResource( 1 )
+
+[node name="DeathZone" type="Area2D" parent="."]
+position = Vector2( 131.416, 223.593 )
+collision_layer = 1024
+collision_mask = 0
+script = ExtResource( 9 )
+is_instakill = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
+shape = SubResource( 2 )
 
 [editable path="Player"]
 

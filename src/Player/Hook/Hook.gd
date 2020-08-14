@@ -15,6 +15,8 @@ const HOOKABLE_PHYSICS_LAYER: = 2
 var is_aiming: = false setget set_is_aiming
 var is_active = true setget set_is_active
 
+onready var _radius: float = snap_detector.calculate_length()
+
 func _ready() -> void:
 	if Engine.editor_hint:
 		update()
