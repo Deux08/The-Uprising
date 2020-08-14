@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/States/Run.gd" type="Script" id=2]
@@ -14,6 +14,9 @@
 [ext_resource path="res://src/Player/FloorDetector.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/Player/Wall.gd" type="Script" id=13]
 [ext_resource path="res://src/Player/PassThrough.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/Player/Spawn.gd" type="Script" id=15]
+[ext_resource path="res://src/Player/Death.gd" type="Script" id=16]
+[ext_resource path="res://src/Player/Camera/CameraRig.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=59]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -37,6 +40,9 @@ script = ExtResource( 59 )
 position = Vector2( -0.337763, 3.03272 )
 shape = SubResource( 1 )
 
+[node name="CameraRig" parent="." instance=ExtResource( 17 )]
+mouse_range = Vector2( 50, 150 )
+
 [node name="PassThrough" parent="." instance=ExtResource( 14 )]
 
 [node name="StateMachine" type="Node" parent="."]
@@ -45,9 +51,9 @@ initial_state = NodePath("Move/Idle")
 
 [node name="Move" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
-max_speed_default = Vector2( 500, 500 )
+max_speed_default = Vector2( 200, 250 )
 acceleration_default = Vector2( 5000, 750 )
-jump_impulse = 1000.0
+jump_impulse = 500.0
 
 [node name="Idle" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 3 )
@@ -61,7 +67,7 @@ script = ExtResource( 2 )
 
 [node name="Air" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 5 )
-acceleration_x = 1500.0
+acceleration_x = 1000.0
 
 [node name="JumpDelay" type="Timer" parent="StateMachine/Move/Air"]
 wait_time = 0.3
@@ -84,9 +90,8 @@ script = ExtResource( 11 )
 [node name="Debug" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( -0.368896, -58.6659 )
-current = true
-zoom = Vector2( 0.5, 0.5 )
-limit_smoothed = true
-smoothing_enabled = true
+[node name="Spawn" type="Node" parent="StateMachine"]
+script = ExtResource( 15 )
+
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource( 16 )
