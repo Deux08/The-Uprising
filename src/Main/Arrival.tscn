@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/MapAsset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
@@ -8,9 +8,13 @@
 [ext_resource path="res://src/UI/debug/DebugDock.gd" type="Script" id=6]
 [ext_resource path="res://src/Objects/HookTarget.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/PassThrough.tres" type="TileSet" id=8]
+[ext_resource path="res://src/Combat/DamageSource.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 100, 5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4.30698, 62.7669 )
 
 [node name="Arrival" type="Node2D"]
 
@@ -69,14 +73,14 @@ anchor_bottom = 0.0
 margin_top = 476.0
 margin_right = 209.0
 margin_bottom = 604.0
-reference_path = NodePath("../../../../Player/Skin")
-properties = PoolStringArray( "_current_animation" )
+reference_path = NodePath("../../../../Player/Stats")
+properties = PoolStringArray( "health" )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 327703, 8, 0, 327704, 8, 0, 327705, 8, 0, 327706, 8, 0, 327707, 8, 0, 393239, 8, 0, 393240, 8, 0, 393241, 8, 0, 393242, 8, 0, 393243, 8, 0, 458775, 8, 0, 458776, 8, 0, 458777, 8, 0, 458778, 8, 0, 458779, 8, 0, 524311, 8, 0, 524312, 8, 0, 524313, 8, 0, 524314, 8, 0, 524315, 8, 0, 589847, 8, 0, 589848, 8, 0, 589849, 8, 0, 589850, 8, 0, 589851, 8, 0, 655383, 8, 0, 655384, 8, 0, 655385, 8, 0, 655386, 8, 0, 655387, 8, 0, 720919, 8, 0, 720920, 8, 0, 720921, 8, 0, 720922, 8, 0, 720923, 8, 0, 786455, 8, 0, 786456, 8, 0, 786457, 8, 0, 786458, 8, 0, 786459, 8, 0, 851991, 8, 0, 851992, 8, 0, 851993, 8, 0, 851994, 8, 0, 851995, 8, 0, 917527, 8, 0, 917528, 7, 0, 917529, 8, 0, 917530, 8, 0, 917531, 8, 0, 983063, 8, 0, 983064, 7, 0, 983065, 8, 0, 983066, 8, 0, 983067, 8, 0, 1048599, 8, 0, 1048600, 8, 0, 1048601, 8, 0, 1048602, 8, 0, 1048603, 8, 0, 1114130, 0, 0, 1179651, 5, 0, 1179652, 5, 0, 1179653, 5, 0, 1179654, 5, 0, 1179655, 5, 0, 1179656, 5, 0, 1179657, 5, 0, 1179658, 5, 0, 1179659, 5, 0, 1179660, 5, 0, 1179661, 5, 0, 1179662, 5, 0, 1179663, 5, 0, 1179664, 5, 0, 1179665, 5, 0, 1179666, 5, 0, 1179667, 5, 0, 1179668, 5, 0, 1179669, 5, 0, 1179670, 5, 0, 1179671, 5, 0, 1179672, 5, 0, 1179673, 5, 0, 1179674, 5, 0, 1179675, 5, 0, 1179676, 5, 0, 1179677, 5, 0, 1179678, 5, 0, 1179679, 5, 0, 1179680, 5, 0, 1179681, 5, 0, 1179682, 5, 0, 1179683, 5, 0, 1179684, 5, 0, 1179685, 5, 0, 1179686, 5, 0, 1179687, 5, 0, 1179688, 5, 0, 1179689, 5, 0, 1179690, 5, 0, 1179691, 5, 0, 1179692, 5, 0, 1179693, 5, 0, 1179694, 5, 0, 1179695, 5, 0, 1179696, 5, 0, 1179697, 5, 0, 1179698, 5, 0, 1179699, 5, 0, 1179700, 5, 0, 1179701, 5, 0, 1179702, 5, 0, 1179703, 5, 0, 1179704, 5, 0, 1179705, 5, 0, 1179706, 5, 0, 1179707, 5, 0, 1179708, 5, 0, 1179709, 5, 0, 1179710, 5, 0, 1179711, 5, 0, 1179712, 5, 0 )
+tile_data = PoolIntArray( 851993, 48, 0, 1114130, 0, 0, 1179651, 5, 0, 1179652, 5, 0, 1179653, 5, 0, 1179654, 5, 0, 1179655, 5, 0, 1179656, 5, 0, 1179657, 5, 0, 1179658, 5, 0, 1179659, 5, 0, 1179660, 5, 0, 1179661, 5, 0, 1179662, 5, 0, 1179663, 5, 0, 1179664, 5, 0, 1179665, 5, 0, 1179666, 5, 0, 1179667, 5, 0, 1179668, 5, 0, 1179669, 5, 0, 1179670, 5, 0, 1179671, 5, 0, 1179672, 5, 0, 1179673, 5, 0, 1179674, 5, 0, 1179675, 5, 0, 1179676, 5, 0, 1179677, 5, 0, 1179678, 5, 0, 1179679, 5, 0, 1179680, 5, 0, 1179681, 5, 0, 1179682, 5, 0, 1179683, 5, 0, 1179684, 5, 0, 1179685, 5, 0, 1179686, 5, 0, 1179687, 5, 0, 1179688, 5, 0, 1179689, 5, 0, 1179690, 5, 0, 1179691, 5, 0, 1179692, 5, 0, 1179693, 5, 0, 1179694, 5, 0, 1179695, 5, 0, 1179696, 5, 0, 1179697, 5, 0, 1179698, 5, 0, 1179699, 5, 0, 1179700, 5, 0, 1179701, 5, 0, 1179702, 5, 0, 1179703, 5, 0, 1179704, 5, 0, 1179705, 5, 0, 1179706, 5, 0, 1179707, 5, 0, 1179708, 5, 0, 1179709, 5, 0, 1179710, 5, 0, 1179711, 5, 0, 1179712, 5, 0 )
 
 [node name="TileMap2" type="TileMap" parent="."]
 tile_set = ExtResource( 8 )
@@ -90,25 +94,36 @@ tile_data = PoolIntArray( 786450, 0, 0, 786451, 0, 0, 786452, 0, 0, 786453, 0, 0
 follow_viewport_enable = false
 
 [node name="HookTarget" parent="." instance=ExtResource( 7 )]
-position = Vector2( 623.536, 137.75 )
+position = Vector2( 251.412, 223.472 )
 
 [node name="HookTarget2" parent="." instance=ExtResource( 7 )]
-position = Vector2( 534.986, 186.927 )
+position = Vector2( 546.878, 161.161 )
 
 [node name="HookTarget3" parent="." instance=ExtResource( 7 )]
-position = Vector2( 687.385, 186.927 )
+position = Vector2( 554.094, 271.163 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240.547, 270.133 )
+collision_mask = 2147483658
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 239.868, 157.444 )
+position = Vector2( 210.311, 193.708 )
 collision_layer = 4
-collision_mask = 0
+collision_mask = 2147483652
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -14.4284, -96.77 )
+position = Vector2( 1.42777, 0.348938 )
 shape = SubResource( 1 )
+
+[node name="DeathZone" type="Area2D" parent="."]
+position = Vector2( 131.416, 223.593 )
+collision_layer = 1024
+collision_mask = 0
+script = ExtResource( 9 )
+is_instakill = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
+shape = SubResource( 2 )
 
 [editable path="Player"]
 
