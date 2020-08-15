@@ -28,6 +28,9 @@ func _on_PassThrough_body_exited(body) -> void:
 	owner.set_collision_mask_bit(PASS_THROUGH_LAYER, true)
 
 func unhandled_input(event: InputEvent) -> void:
+	if owner.talking:
+		return
+	
 	if owner.is_on_floor() and event.is_action_pressed("jump"):
 		_state_machine.transition_to("Move/Air", { impulse = jump_impulse })
 	if event.is_action_pressed("toggle_debug_move"):		
@@ -74,6 +77,8 @@ static func calculate_velocity(
 
 
 func get_move_direction() -> Vector2:
+	if owner.talking:
+		return Vector2.ZERO
 	var horizontal_move_direction: = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	if (horizontal_move_direction > 0):
 		direction = DIRECTION_RIGHT
