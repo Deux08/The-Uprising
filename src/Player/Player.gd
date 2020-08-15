@@ -67,5 +67,4 @@ func set_is_active(value: bool) -> void:
 	ledge_wall_detector.is_active = value
 
 func _set_Player_respawn_point(location: Vector2) -> void:
-	print("New Checkpoint")
 	_start_position = location

@@ -15,19 +15,16 @@ func _unhandled_input(event) -> void:
 	if checkpoint_active:
 		if (event.is_action_pressed("interact")):
 			checkpoint_location = get_position()
-			print(checkpoint_location)
 			emit_signal("checkpoint", checkpoint_location)
 
 
 func _on_Checkpoint_area_entered(area):
 	checkpoint_active = true
-	print("Checkpoint")
 	player_text.show()
 	label.show()
 
 
 func _on_Checkpoint_area_exited(area):
 	checkpoint_active = false
-	print("Exiting Checkpoint")
 	player_text.hide()
 	label.hide()
