@@ -198,7 +198,7 @@ actor_1_text_color = Color( 0.854902, 0.133333, 0.133333, 1 )
 actor_2_text_color = Color( 0.784314, 0.203922, 0.831373, 1 )
 actor_1 = NodePath("../Villager")
 actor_2 = NodePath("../Lana")
-dialogue_lines = [ "actor_1", "MURDERER !", "HE HAS KILLED MOST OF OUR MEMBERS", "KILL HIM !!!", "actor_2", "DON'T !!! We have wiped out his other team members, we should keep him as a hostage", "*Proceeds to take a bat*", "*BAAM*", "end_dialogue" ]
+dialogue_lines = [ "actor_1", "MURDERER !", "HE HAS KILLED MANY OF OUR FRIENDS", "KILL HIM !!!", "actor_2", "DON'T !!! We have wiped out his other team members, we should keep him as a hostage", "KNOCK HIM OUT !", "end_dialogue" ]
 auto = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueNode7"]
