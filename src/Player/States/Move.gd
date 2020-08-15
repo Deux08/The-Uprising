@@ -27,6 +27,9 @@ func _on_Hook_hooked_onto_target(target_global_position: Vector2) -> void:
 func _on_PassThrough_body_exited(body) -> void:
 	owner.set_collision_mask_bit(PASS_THROUGH_LAYER, true)
 
+func _on_Stats_damage_taken() -> void:
+	return
+
 func unhandled_input(event: InputEvent) -> void:
 	if owner.talking:
 		return

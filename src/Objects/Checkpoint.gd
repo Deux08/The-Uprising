@@ -16,13 +16,14 @@ func _unhandled_input(event) -> void:
 		if (event.is_action_pressed("interact")):
 			checkpoint_location = get_position()
 			emit_signal("checkpoint", checkpoint_location)
+			# Regenerate full health
+			player.stats.heal(player.stats.max_health)
 
 
 func _on_Checkpoint_area_entered(area):
 	checkpoint_active = true
 	player_text.show()
 	label.show()
-
 
 func _on_Checkpoint_area_exited(area):
 	checkpoint_active = false

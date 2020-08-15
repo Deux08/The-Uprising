@@ -39,12 +39,16 @@ var talking = false
 func _ready() -> void:
 	# The signal comes from the Stats node
 	stats.connect("health_depleted", self, "_on_Player_health_depleted")
+	stats.connect("health_changed", self, "_on_Player_health_changed")
 	health_bar._on_max_health_updated(stats.max_health)
 	activate_scenic_camera(false)
 	
 func take_damage(source: Hit) -> void:
 	stats.take_damage(source)
 	health_bar._on_health_updated(stats.health, source.damage)
+
+func _on_Player_health_changed(health: int, old_health: int) -> void:
+	health_bar._on_health_updated(health, health - old_health)
 
 func _on_Player_health_depleted() -> void:
 	state_machine.transition_to("Death")
