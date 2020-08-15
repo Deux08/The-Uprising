@@ -11,6 +11,10 @@ export var acceleration_x: = 2500.0
 func unhandled_input(event: InputEvent) -> void:
 	var move: = get_parent()
 	
+	if event.is_action_pressed("attack"):
+		print("Attack")
+		_state_machine.transition_to("Move/Attack")
+	
 	if event.is_action_pressed("jump"):
 		owner.skin.play("jump")
 		emit_signal("jumped")

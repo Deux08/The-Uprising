@@ -21,6 +21,7 @@ onready var scenic_camera: Camera2D = $ScenicCamera
 # Health and Combat related nodes
 onready var stats: Stats = $Stats
 onready var health_bar: Control = $HealthBar
+onready var attack_radius: Area2D = $AttackRadius
 
 # FLOOR NORMAL is a variable that affects which direction is the floor.
 # Vector2.UP is a Vector2(0,-1) value. the -1 y value indicates that the top is up and the bottom is down.

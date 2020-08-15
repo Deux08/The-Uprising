@@ -25,6 +25,9 @@ export (Array, String) var dialogue_lines
 export (bool) var active = true
 export (bool) var auto = false
 
+# Removes the node from the scene completely upon end of dialogue
+export (bool) var autoDisable = true
+
 onready var player = get_node("../Player")
 onready var player_text = get_node("../Player/Interact/PlayerTalk")
 #onready var director = get_node("../director")
@@ -163,8 +166,9 @@ func dialogue():
 				#director.zoom(Vector2(0.6, 0.6), 1.0)
 				player.talking = false
 				player.hook.is_active = true
-				# Removes the Dialogue Node from the Scene
-				queue_free()
+				if autoDisable:
+					# Removes the Dialogue Node from the Scene
+					queue_free()
 	else:
 		pass
 	

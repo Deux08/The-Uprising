@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/States/Run.gd" type="Script" id=2]
@@ -21,7 +21,7 @@
 [ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/Combat/HealthBar.tscn" type="PackedScene" id=20]
 [ext_resource path="res://src/Player/Interact.tscn" type="PackedScene" id=21]
-[ext_resource path="res://src/Combat/DamageSource.gd" type="Script" id=22]
+[ext_resource path="res://src/Player/AttackRadius.gd" type="Script" id=22]
 [ext_resource path="res://src/Player/States/Attack.gd" type="Script" id=23]
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=59]
 
@@ -33,17 +33,21 @@ height = 17.0256
 radius = 5.44322
 height = 17.6474
 
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 4.34185, 13.2543 )
+
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 0, 0.250271 )
 collision_mask = 110
 script = ExtResource( 59 )
 
 [node name="Hook" parent="." instance=ExtResource( 6 )]
+position = Vector2( -0.0625076, 0 )
 
 [node name="Skin" parent="." instance=ExtResource( 7 )]
 
 [node name="Alwin" parent="Skin" index="0"]
-frame = 1
+animation = "idle"
 
 [node name="LedgeWallDetector" parent="." instance=ExtResource( 10 )]
 
@@ -136,7 +140,14 @@ shape = SubResource( 2 )
 collision_mask = 33
 
 [node name="AttackRadius" type="Area2D" parent="."]
+position = Vector2( 17.711, 2.03547 )
+collision_layer = 2147487744
+collision_mask = 2048
 script = ExtResource( 22 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]
+shape = SubResource( 3 )
+disabled = true
 
 [editable path="Skin"]
 
