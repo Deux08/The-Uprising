@@ -120,9 +120,6 @@ position = Vector2( 594.49, -4.74058 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240.547, 270.133 )
 
-[node name="TargetCirce" parent="Player/Hook" index="2"]
-color = Color( 0.815682, 0.859375, 0.060425, 1 )
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( 239.868, 157.444 )
 collision_layer = 4

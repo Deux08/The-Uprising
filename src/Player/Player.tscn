@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/States/Run.gd" type="Script" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://src/Combat/HealthBar.tscn" type="PackedScene" id=20]
 [ext_resource path="res://src/Player/Interact.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/Combat/DamageSource.gd" type="Script" id=22]
+[ext_resource path="res://src/Player/States/Attack.gd" type="Script" id=23]
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=59]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -101,6 +102,9 @@ one_shot = true
 
 [node name="Wall" type="Node" parent="StateMachine/Move"]
 script = ExtResource( 13 )
+
+[node name="Attack" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 23 )
 
 [node name="Hook" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
