@@ -149,6 +149,15 @@ dialogue_lines = [ "actor_player", "You are already close to the infected villag
 [node name="CollisionShape2D" parent="DialogueNode3" index="0"]
 position = Vector2( -497.776, -463.701 )
 
+[node name="DialogueNode4" parent="." instance=ExtResource( 9 )]
+position = Vector2( 467.732, 324.098 )
+collision_mask = 2147483648
+dialogue_lines = [ "actor_player", "Oh no, the infected are here....", "use your left click button to attack", "end_dialogue" ]
+auto = true
+
+[node name="CollisionShape2D" parent="DialogueNode4" index="0"]
+position = Vector2( -82.8379, -319.589 )
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
 volume_db = 1.0
@@ -163,3 +172,5 @@ autoplay = true
 [editable path="DialogueNode2"]
 
 [editable path="DialogueNode3"]
+
+[editable path="DialogueNode4"]
