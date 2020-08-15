@@ -26,6 +26,8 @@ func physics_process(delta: float) -> void:
 	# Sign function returns a value of -1 or 1 depending on the input parameter.
 	var direction: Vector2 = move.get_move_direction() if controls_freeze.is_stopped() else Vector2(sign(move.velocity.x), 1.0)
 	move.velocity = move.calculate_velocity(move.velocity, move.max_speed, move.acceleration, delta, direction)
+	if owner.talking:
+		return
 	move.velocity = owner.move_and_slide(move.velocity, owner.FLOOR_NORMAL)
 	Events.emit_signal("player_moved", owner)
 	
@@ -74,6 +76,8 @@ func exit() -> void:
 Returns a new velocity with a vertical impulse applied to it
 """
 func calculate_jump_velocity(impulse: float = 0.0) -> Vector2:
+	if owner.talking:
+		return Vector2.ZERO
 	var move: State = get_parent()
 	return move.calculate_velocity(
 		move.velocity,
