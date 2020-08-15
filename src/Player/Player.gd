@@ -10,7 +10,6 @@ onready var collider: CollisionShape2D = $CollisionShape2D
 onready var hook: Hook = $Hook
 
 # Environment detection nodes for movement characteristics
-onready var ledge_wall_detector: LedgeWallDetector = $LedgeWallDetector
 onready var floor_detector: FloorDetector = $FloorDetector
 onready var pass_through: Area2D = $PassThrough
 
@@ -67,7 +66,7 @@ func set_is_active(value: bool) -> void:
 		return
 	collider.disabled = not value	
 	hook.is_active = value
-	ledge_wall_detector.is_active = value
+	#ledge_wall_detector.is_active = value
 
 func _set_Player_respawn_point(location: Vector2) -> void:
 	_start_position = location

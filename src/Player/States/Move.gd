@@ -61,13 +61,13 @@ func enter(msg: Dictionary = {}) -> void:
 	owner.hook.connect("hooked_onto_target", self, "_on_Hook_hooked_onto_target", [], CONNECT_DEFERRED)
 	owner.stats.connect("damage_taken", self, "_on_Stats_damage_taken")
 	$Air.connect("jumped", $Idle.jump_delay, "start")
-	owner.pass_through.connect("body_exited", self, "_onPassThrough_body_exited")
+	owner.pass_through.connect("body_exited", self, "_on_PassThrough_body_exited")
 
 func exit() -> void:
 	owner.hook.disconnect("hooked_onto_target", self, "_on_Hook_hooked_onto_target")
 	owner.stats.disconnect("damage_taken", self, "_on_Stats_damage_taken")
 	$Air.disconnect("jumped", $Idle.jump_delay, "start")
-	owner.pass_through.disconnect("body_exited", self, "_onPassThrough_body_exited")
+	owner.pass_through.disconnect("body_exited", self, "_on_PassThrough_body_exited")
 
 static func calculate_velocity(
 		old_velocity: Vector2,

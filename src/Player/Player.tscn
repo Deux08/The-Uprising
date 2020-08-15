@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/States/Run.gd" type="Script" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://src/Player/Skin.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Player/States/Hook.gd" type="Script" id=8]
 [ext_resource path="res://src/Player/States/Debug.gd" type="Script" id=9]
-[ext_resource path="res://src/Player/LedgeWallDetector.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Player/States/Ledge.gd" type="Script" id=11]
 [ext_resource path="res://src/Player/FloorDetector.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/Player/Wall.gd" type="Script" id=13]
@@ -30,8 +29,8 @@ radius = 5.61291
 height = 17.0256
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 5.44322
-height = 17.6474
+radius = 5.981
+height = 16.189
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 4.34185, 13.2543 )
@@ -48,8 +47,6 @@ position = Vector2( -0.0625076, 0 )
 
 [node name="Alwin" parent="Skin" index="0"]
 animation = "idle"
-
-[node name="LedgeWallDetector" parent="." instance=ExtResource( 10 )]
 
 [node name="FloorDetector" parent="." instance=ExtResource( 12 )]
 
@@ -133,7 +130,8 @@ max_health = 100.0
 [node name="HitBox" parent="." instance=ExtResource( 19 )]
 position = Vector2( -0.314274, 3.37843 )
 
-[node name="CollisionShape2D" parent="HitBox" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2( 0, 0.0884228 )
 shape = SubResource( 2 )
 
 [node name="Interact" parent="." instance=ExtResource( 21 )]

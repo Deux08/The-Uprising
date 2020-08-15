@@ -44,8 +44,8 @@ func physics_process(delta: float) -> void:
 	if owner.is_on_floor():
 		var target_state: = "Move/Idle" if move.get_move_direction().x == 0 else "Move/Run"
 		_state_machine.transition_to(target_state)
-	elif owner.ledge_wall_detector.is_against_ledge():
-		_state_machine.transition_to("Ledge", {move_state=move})
+#	elif owner.ledge_wall_detector.is_against_ledge():
+#		_state_machine.transition_to("Ledge", {move_state=move})
 	
 	if owner.is_on_wall():
 		var wall_normal: float = owner.get_slide_collision(0).normal.x
