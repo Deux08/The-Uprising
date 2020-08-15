@@ -81,7 +81,7 @@ _global_script_class_icons={
 [application]
 
 config/name="The Uprising"
-run/main_scene="res://src/Main/Arrival.tscn"
+run/main_scene="res://src/Main/MainMenu.tscn"
 
 [autoload]
 
