@@ -88,6 +88,13 @@ run/main_scene="res://src/Main/Test.tscn"
 Events="*res://src/Autoload/Events.gd"
 Steering="*res://src/Autoload/Steering.gd"
 
+[debug]
+
+gdscript/warnings/unassigned_variable=false
+gdscript/warnings/unassigned_variable_op_assign=false
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_argument=false
+
 [display]
 
 window/size/width=1280
@@ -191,6 +198,7 @@ interact={
 2d_physics/layer_4="PassThrough"
 2d_physics/layer_5="Enemies"
 2d_physics/layer_6="Interactable"
+2d_physics/layer_7="Checkpoint"
 2d_physics/layer_11="DamageSource"
 2d_physics/layer_12="Hitbox"
 

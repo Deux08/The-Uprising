@@ -25,7 +25,7 @@ export (Array, String) var dialogue_lines
 export (bool) var active
 
 onready var player = get_node("../Player")
-onready var player_text = get_node("../Player/Interact/PlayerText")
+onready var player_text = get_node("../Player/Interact/PlayerTalk")
 #onready var director = get_node("../director")
 onready var player_animation = get_node("../Player/Skin/AnimationPlayer")
 

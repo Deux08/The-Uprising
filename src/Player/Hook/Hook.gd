@@ -61,11 +61,8 @@ func set_is_aiming(value: bool) -> void:
 
 	if is_aiming:
 		aim_duration.start()
-		print("Time Start")
 	else:
-		print("Time Stopped")
 		aim_duration.stop()
 
 func _on_AimDuration_timeout():
-	print("Timer Done")
 	set_is_aiming(false)

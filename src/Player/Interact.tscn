@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/Player/Interact.gd" type="Script" id=1]
+[ext_resource path="res://Assets/theme/fonts/default_font_code.tres" type="DynamicFont" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.61291
@@ -15,13 +16,30 @@ script = ExtResource( 1 )
 position = Vector2( -0.337763, 3.03272 )
 shape = SubResource( 1 )
 
-[node name="PlayerText" type="Label" parent="."]
-margin_left = -5.18039
-margin_top = -16.325
-margin_right = 494.82
-margin_bottom = 183.675
+[node name="PlayerTalk" type="Label" parent="."]
+visible = false
+margin_left = -9.88871
+margin_top = -17.6091
+margin_right = 490.112
+margin_bottom = 182.391
 rect_scale = Vector2( 0.2, 0.2 )
+custom_fonts/font = ExtResource( 2 )
 text = "[e]talk"
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerSaveCheckPoint" type="Label" parent="."]
+visible = false
+margin_left = -24.4417
+margin_top = -17.8659
+margin_right = 475.559
+margin_bottom = 182.134
+rect_scale = Vector2( 0.2, 0.2 )
+custom_fonts/font = ExtResource( 2 )
+text = "[e]Save Checkpoint"
 autowrap = true
 uppercase = true
 __meta__ = {
