@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/States/Run.gd" type="Script" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/Combat/HealthBar.tscn" type="PackedScene" id=20]
 [ext_resource path="res://src/Player/Interact.tscn" type="PackedScene" id=21]
+[ext_resource path="res://src/Combat/DamageSource.gd" type="Script" id=22]
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=59]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -39,6 +40,9 @@ script = ExtResource( 59 )
 [node name="Hook" parent="." instance=ExtResource( 6 )]
 
 [node name="Skin" parent="." instance=ExtResource( 7 )]
+
+[node name="Alwin" parent="Skin" index="0"]
+frame = 1
 
 [node name="LedgeWallDetector" parent="." instance=ExtResource( 10 )]
 
@@ -126,6 +130,11 @@ shape = SubResource( 2 )
 
 [node name="Interact" parent="." instance=ExtResource( 21 )]
 collision_mask = 33
+
+[node name="AttackRadius" type="Area2D" parent="."]
+script = ExtResource( 22 )
+
+[editable path="Skin"]
 
 [editable path="HitBox"]
 

@@ -22,7 +22,8 @@ export (NodePath) var actor_player
 
 export (Array, String) var dialogue_lines
 
-export (bool) var active
+export (bool) var active = true
+export (bool) var auto = false
 
 onready var player = get_node("../Player")
 onready var player_text = get_node("../Player/Interact/PlayerTalk")
@@ -39,9 +40,18 @@ func _ready():
 		$CollisionShape2D.disabled = true
 
 func _on_dialogue_node_area_entered(area):
-	print("Interact")
 	dialogue_start = true
 	player_text.show()
+	if auto:
+		if can_talk:
+			$dialogue_placer/text_box.show()
+			$dialogue_placer/next.hide()
+			player.talking = true
+			player.hook.is_active = false
+			$dialogue_placer/speaker_name.show()
+			dialogue()
+		else:
+			return
 
 
 func _on_dialogue_node_area_exited(area):
@@ -49,12 +59,13 @@ func _on_dialogue_node_area_exited(area):
 	player_text.hide()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if dialogue_start == true:
+	if dialogue_start:
 		if (event.is_action_pressed("interact")):
-			if can_talk == true:
+			if can_talk:
 				$dialogue_placer/text_box.show()
 				$dialogue_placer/next.hide()
 				player.talking = true
+				player.hook.is_active = false
 				$dialogue_placer/speaker_name.show()
 				dialogue()
 			else:
@@ -67,7 +78,6 @@ func dialogue():
 	can_talk = false
 	$dialogue_placer/text.visible_characters = 0
 	$dialogue_placer/text.text = dialogue_lines[dialogue_line_number]
-	
 	
 	if dialogue_lines[dialogue_line_number] in actors:
 		talking_person = dialogue_lines[dialogue_line_number]
@@ -152,7 +162,7 @@ func dialogue():
 				$dialogue_placer/text_box.hide()
 				#director.zoom(Vector2(0.6, 0.6), 1.0)
 				player.talking = false
-				
+				player.hook.is_active = true
 				# Removes the Dialogue Node from the Scene
 				queue_free()
 	else:

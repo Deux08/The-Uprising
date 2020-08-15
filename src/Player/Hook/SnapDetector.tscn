@@ -4,12 +4,12 @@
 [ext_resource path="res://src/Player/Hook/HookingHint.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 18.0561
-height = 32.2138
+radius = 11.8468
+height = 41.079
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 17.1192
-height = 52.3735
+radius = 13.1608
+height = 57.1942
 
 [node name="SnapDetector" type="Area2D"]
 script = ExtResource( 1 )

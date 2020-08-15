@@ -99,7 +99,7 @@ position = Vector2( 451.092, 106.277 )
 position = Vector2( 452.326, 198.817 )
 
 [node name="HookTarget3" parent="." instance=ExtResource( 7 )]
-position = Vector2( -173.031, -38.3531 )
+position = Vector2( -93.0386, -57.3612 )
 
 [node name="HookTarget5" parent="." instance=ExtResource( 7 )]
 position = Vector2( -77.6912, -167.829 )
@@ -109,6 +109,9 @@ position = Vector2( 530.905, 250.109 )
 
 [node name="HookTarget4" parent="." instance=ExtResource( 7 )]
 position = Vector2( 594.49, -4.74058 )
+
+[node name="HookTarget7" parent="." instance=ExtResource( 7 )]
+position = Vector2( 435.752, -39.8667 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240.547, 270.133 )

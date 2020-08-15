@@ -140,11 +140,13 @@ damage = 10
 shape = SubResource( 2 )
 
 [node name="DialogueNode" parent="." instance=ExtResource( 10 )]
-position = Vector2( 269.989, 276.048 )
+position = Vector2( 486.958, 321.851 )
+collision_layer = 1
 collision_mask = 2147483648
 actor_1_text_color = Color( 0.933333, 0.0470588, 0.0470588, 1 )
 actor_player = NodePath("../Player")
 dialogue_lines = [ "actor_player", "test this is a test that shouldn't be underestimated", "end_dialogue" ]
+auto = true
 
 [editable path="Player"]
 
