@@ -81,7 +81,7 @@ _global_script_class_icons={
 [application]
 
 config/name="The Uprising"
-run/main_scene="res://src/Main/Test.tscn"
+run/main_scene="res://src/Main/Arrival.tscn"
 
 [autoload]
 
@@ -172,11 +172,6 @@ aim={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"unicode":0,"echo":false,"script":null)
  ]
 }
-debug_death={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":true,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
- ]
-}
 
 [layer_names]
 
@@ -184,9 +179,6 @@ debug_death={
 2d_physics/layer_2="World"
 2d_physics/layer_3="Hookable"
 2d_physics/layer_4="PassThrough"
-2d_physics/layer_5="Enemies"
-2d_physics/layer_11="DamageSource"
-2d_physics/layer_12="Hitbox"
 
 [world]
 
