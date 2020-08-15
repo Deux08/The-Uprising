@@ -38,7 +38,7 @@ func unhandled_input(event: InputEvent) -> void:
 		_state_machine.transition_to("Move/Air")
 	elif event.is_action_released("move_down") and not owner.get_collision_mask_bit(PASS_THROUGH_LAYER):
 		owner.set_collision_mask_bit(PASS_THROUGH_LAYER, true)
-
+	
 func physics_process(delta: float) -> void:
 	velocity = calculate_velocity(velocity, max_speed, acceleration, delta, get_move_direction())
 	velocity = owner.move_and_slide(velocity, owner.FLOOR_NORMAL)

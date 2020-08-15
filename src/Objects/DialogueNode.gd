@@ -1,7 +1,7 @@
 extends Area2D
 
 var can_talk = true
-var talking_pearson = null
+var talking_person = null
 var actors = ["actor_1", "actor_2", "actor_3", "actor_4", "actor_player",]
 var actions = ["play_animation", "set_animation", "end_dialogue"]
 var execute_action = null
@@ -25,24 +25,21 @@ export (Array, String) var dialogue_lines
 export (bool) var active
 
 onready var player = get_node("../Player")
-onready var player_text = get_node("../Player/PlayerText")
+onready var player_text = get_node("../Player/Interact/PlayerTalk")
 #onready var director = get_node("../director")
 onready var player_animation = get_node("../Player/Skin/AnimationPlayer")
 
 signal line_finished
 
 func _ready():
-	print()
+	print("Dialogue Ready")
 	if active == true:
 		$CollisionShape2D.disabled = false
 	else:
 		$CollisionShape2D.disabled = true
 
-func _process(delta):
-	print()
-
-
 func _on_dialogue_node_area_entered(area):
+	print("Interact")
 	dialogue_start = true
 	player_text.show()
 
@@ -51,12 +48,9 @@ func _on_dialogue_node_area_exited(area):
 	dialogue_start = false
 	player_text.hide()
 
-
-
-
-func _input(event):
+func _unhandled_input(event: InputEvent) -> void:
 	if dialogue_start == true:
-		if Input.is_action_just_pressed("e"):
+		if (event.is_action_pressed("interact")):
 			if can_talk == true:
 				$dialogue_placer/text_box.show()
 				$dialogue_placer/next.hide()
@@ -69,7 +63,6 @@ func _input(event):
 		return
 
 
-
 func dialogue():
 	can_talk = false
 	$dialogue_placer/text.visible_characters = 0
@@ -77,47 +70,47 @@ func dialogue():
 	
 	
 	if dialogue_lines[dialogue_line_number] in actors:
-		talking_pearson = dialogue_lines[dialogue_line_number]
+		talking_person = dialogue_lines[dialogue_line_number]
 		
-		match talking_pearson:
+		match talking_person:
 			
 			"actor_1":
-				talking_pearson = actor_1
+				talking_person = actor_1
 				$dialogue_placer/text.set("custom_colors/font_color", actor_1_text_color)
 				$dialogue_placer/speaker_name.set("custom_colors/font_color", actor_1_text_color)
-				$dialogue_placer/speaker_name.text = get_node(talking_pearson).name
+				$dialogue_placer/speaker_name.text = get_node(talking_person).name
 				dialogue_line_number += 1
 				dialogue()
 				return
 			"actor_2":
-				talking_pearson = actor_2
+				talking_person = actor_2
 				$dialogue_placer/text.set("custom_colors/font_color", actor_2_text_color)
 				$dialogue_placer/speaker_name.set("custom_colors/font_color", actor_2_text_color)
-				$dialogue_placer/speaker_name.text = get_node(talking_pearson).name
+				$dialogue_placer/speaker_name.text = get_node(talking_person).name
 				dialogue_line_number += 1
 				dialogue()
 				return
 			"actor_3":
-				talking_pearson = actor_3
+				talking_person = actor_3
 				$dialogue_placer/text.set("custom_colors/font_color", actor_3_text_color)
 				$dialogue_placer/speaker_name.set("custom_colors/font_color", actor_3_text_color)
-				$dialogue_placer/speaker_name.text = get_node(talking_pearson).name
+				$dialogue_placer/speaker_name.text = get_node(talking_person).name
 				dialogue_line_number += 1
 				dialogue()
 				return
 			"actor_4":
-				talking_pearson = actor_4
+				talking_person = actor_4
 				$dialogue_placer/text.set("custom_colors/font_color", actor_4_text_color)
 				$dialogue_placer/speaker_name.set("custom_colors/font_color", actor_4_text_color)
-				$dialogue_placer/speaker_name.text = get_node(talking_pearson).name
+				$dialogue_placer/speaker_name.text = get_node(talking_person).name
 				dialogue_line_number += 1
 				dialogue()
 				return
 			"actor_player":
-				talking_pearson = actor_player
+				talking_person = actor_player
 				$dialogue_placer/text.set("custom_colors/font_color", Color("#ffffff"))
 				$dialogue_placer/speaker_name.set("custom_colors/font_color", Color("#ffffff"))
-				$dialogue_placer/speaker_name.text = get_node(talking_pearson).name
+				$dialogue_placer/speaker_name.text = "Alwin"
 				dialogue_line_number += 1
 				dialogue()
 				return
@@ -136,7 +129,7 @@ func dialogue():
 				$dialogue_placer/speaker_name.hide()
 				$dialogue_placer/text_box.hide()
 				
-				var a = get_node(str(talking_pearson) + "/Skin/AnimationPlayer")
+				var a = get_node(str(talking_person) + "/Skin/AnimationPlayer")
 				
 				a.play(animation_name)
 				yield(a, "animation_finished")

@@ -9,6 +9,7 @@ onready var arrow: Node2D = $Arrow
 onready var snap_detector: Area2D = $SnapDetector
 onready var cooldown: Timer = $Cooldown
 onready var target_circle: DrawingUtils = $TargetCirce
+onready var aim_duration: Timer = $AimDuration
 
 const HOOKABLE_PHYSICS_LAYER: = 2
 
@@ -57,3 +58,11 @@ func set_is_active(value: bool) -> void:
 func set_is_aiming(value: bool) -> void:
 	is_aiming = value
 	Engine.time_scale = 0.05 if is_aiming == true else 1.0
+
+	if is_aiming:
+		aim_duration.start()
+	else:
+		aim_duration.stop()
+
+func _on_AimDuration_timeout():
+	set_is_aiming(false)

@@ -30,6 +30,7 @@ const FLOOR_NORMAL: = Vector2.UP
 
 # Gonna be automatically true when the Player node is created
 var is_active = true setget set_is_active
+var _start_position: Vector2
 
 # This is variable is used for dialogues
 var talking = false
@@ -39,6 +40,7 @@ func _ready() -> void:
 	stats.connect("health_depleted", self, "_on_Player_health_depleted")
 	health_bar._on_max_health_updated(stats.max_health)
 	activate_scenic_camera(false)
+	
 
 
 func take_damage(source: Hit) -> void:
@@ -63,3 +65,6 @@ func set_is_active(value: bool) -> void:
 	collider.disabled = not value	
 	hook.is_active = value
 	ledge_wall_detector.is_active = value
+
+func _set_Player_respawn_point(location: Vector2) -> void:
+	_start_position = location
