@@ -328,6 +328,9 @@ collision_mask = 2
 script = ExtResource( 5 )
 initial_state = NodePath("Move/Roaming")
 
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource( 16 )
+
 [node name="Move" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
 
@@ -346,9 +349,6 @@ script = ExtResource( 12 )
 
 [node name="StunTimer" type="Timer" parent="StateMachine/Move/TakeHit"]
 one_shot = true
-
-[node name="Death" type="Node" parent="StateMachine/Move"]
-script = ExtResource( 16 )
 
 [node name="AttackRadius" type="Area2D" parent="."]
 position = Vector2( 32.0443, -10.195 )

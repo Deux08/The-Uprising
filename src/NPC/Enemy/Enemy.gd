@@ -6,6 +6,8 @@ const DIRECTION_LEFT = "Left"
 
 var direction = "Right"
 
+var dead = false
+
 onready var state_machine: StateMachine = $StateMachine
 
 onready var collision: CollisionShape2D = $CollisionShape2D
@@ -26,6 +28,8 @@ func take_damage(source: Hit) -> void:
 	health_bar._on_health_updated(stats.health, source.damage)
 
 func deactivate() -> void:
+	dead = true
+	state_machine.disabled = true
 	remove_child(health_bar)
 	remove_child(attack_radius)
 	remove_child(hitbox)
@@ -33,5 +37,4 @@ func deactivate() -> void:
 	remove_child(raycast)
 	remove_child(attack_trigger)
 	remove_child(stats)
-	remove_child(state_machine)
 	remove_child(collision)

@@ -2,12 +2,16 @@ extends State
 
 func physics_process(delta):
 	var move = get_parent()
+	move.physics_process(delta)
 	if (owner.direction == owner.DIRECTION_RIGHT):
 		move.velocity.x = move.speed
 		owner.skin.sprite.flip_h = false
+		owner.attack_trigger.cast_to.x = 40
+		print(owner.attack_trigger.cast_to.x )
 	elif (owner.direction == owner.DIRECTION_LEFT):
 		move.velocity.x = -move.speed
 		owner.skin.sprite.flip_h = true
+		owner.attack_trigger.cast_to.x = -40
 	
 	move.velocity.y += move.gravity
 
@@ -26,9 +30,10 @@ func physics_process(delta):
 		owner.raycast.position.x *= -1
 
 func enter(msg: Dictionary = {}) -> void:
-	owner.skin.loop("run", true)
 	var move: = get_parent()
 	move.enter(msg)
+	owner.skin.loop("run", true)
+
 
 func exit() -> void:
 	owner.skin.loop("run", false)

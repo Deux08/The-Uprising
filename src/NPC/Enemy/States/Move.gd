@@ -6,9 +6,14 @@ export var speed = 30
 var velocity = Vector2()
 
 func physics_process(delta: float) -> void:
-	return
+	if owner.attack_trigger.is_colliding():
+		print("Player Detected")
+		_state_machine.transition_to("Move/Attack")
 
 func enter(msg: Dictionary = {}) -> void:
+	if owner.dead:
+		_state_machine.state = "Death"
+		return
 	owner.stats.connect("damage_taken", self, "_on_Enemy_damage_taken")
 	owner.stats.connect("health_depleted", self, "_on_Enemy_death")
 
@@ -21,4 +26,4 @@ func _on_Enemy_damage_taken() -> void:
 
 func _on_Enemy_death() -> void:
 	print("Dead")
-	_state_machine.transition_to("Move/Death")
+	_state_machine.transition_to("Death")
