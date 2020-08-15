@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/States/Run.gd" type="Script" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/Combat/HealthBar.tscn" type="PackedScene" id=20]
+[ext_resource path="res://src/Player/Interact.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=59]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -32,7 +33,7 @@ height = 17.6474
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 0, 0.250271 )
-collision_mask = 14
+collision_mask = 46
 script = ExtResource( 59 )
 
 [node name="Hook" parent="." instance=ExtResource( 6 )]
@@ -123,18 +124,9 @@ position = Vector2( -0.314274, 3.37843 )
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource( 2 )
 
-[node name="PlayerText" type="Label" parent="."]
-visible = false
-margin_left = -5.18039
-margin_top = -16.325
-margin_right = 494.82
-margin_bottom = 183.675
-rect_scale = Vector2( 0.2, 0.2 )
-text = "[e]talk"
-autowrap = true
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Interact" parent="." instance=ExtResource( 21 )]
+collision_mask = 33
 
 [editable path="HitBox"]
+
+[editable path="Interact"]

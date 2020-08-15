@@ -10,7 +10,7 @@ mouse_range = Vector2( 100, 300 )
 
 [node name="ShakingCamera" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 0.25, 0.25 )
+zoom = Vector2( 0.3, 0.3 )
 process_mode = 0
 smoothing_enabled = true
 smoothing_speed = 3.0
