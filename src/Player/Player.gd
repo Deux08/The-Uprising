@@ -41,8 +41,6 @@ func _ready() -> void:
 	health_bar._on_max_health_updated(stats.max_health)
 	activate_scenic_camera(false)
 	
-
-
 func take_damage(source: Hit) -> void:
 	stats.take_damage(source)
 	health_bar._on_health_updated(stats.health, source.damage)
