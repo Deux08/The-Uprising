@@ -16,6 +16,7 @@ onready var pass_through: Area2D = $PassThrough
 
 # Camera Node
 onready var camera_rig: Position2D = $CameraRig
+onready var scenic_camera: Camera2D = $ScenicCamera
 
 # Health and Combat related nodes
 onready var stats: Stats = $Stats
@@ -30,10 +31,15 @@ const FLOOR_NORMAL: = Vector2.UP
 # Gonna be automatically true when the Player node is created
 var is_active = true setget set_is_active
 
+# This is variable is used for dialogues
+var talking = false
+
 func _ready() -> void:
 	# The signal comes from the Stats node
 	stats.connect("health_depleted", self, "_on_Player_health_depleted")
 	health_bar._on_max_health_updated(stats.max_health)
+	activate_scenic_camera(false)
+
 
 func take_damage(source: Hit) -> void:
 	stats.take_damage(source)
@@ -41,7 +47,13 @@ func take_damage(source: Hit) -> void:
 
 func _on_Player_health_depleted() -> void:
 	state_machine.transition_to("Death")
-	
+
+# Changing between cameras
+func activate_scenic_camera(activate: bool):
+	# Camera used for player movement
+	camera_rig.camera.current = not activate
+	# Camera used for cut scenes
+	scenic_camera.current = activate
 
 func set_is_active(value: bool) -> void:
 	is_active = value

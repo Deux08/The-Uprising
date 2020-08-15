@@ -50,6 +50,9 @@ shape = SubResource( 1 )
 [node name="CameraRig" parent="." instance=ExtResource( 17 )]
 mouse_range = Vector2( 50, 150 )
 
+[node name="ScenicCamera" type="Camera2D" parent="."]
+zoom = Vector2( 0.25, 0.25 )
+
 [node name="PassThrough" parent="." instance=ExtResource( 14 )]
 
 [node name="HealthBar" parent="." instance=ExtResource( 20 )]
@@ -119,5 +122,19 @@ position = Vector2( -0.314274, 3.37843 )
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource( 2 )
+
+[node name="PlayerText" type="Label" parent="."]
+visible = false
+margin_left = -5.18039
+margin_top = -16.325
+margin_right = 494.82
+margin_bottom = 183.675
+rect_scale = Vector2( 0.2, 0.2 )
+text = "[e]talk"
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [editable path="HitBox"]

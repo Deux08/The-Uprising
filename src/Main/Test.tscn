@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/MapAsset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/Objects/HookTarget.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/PassThrough.tres" type="TileSet" id=8]
 [ext_resource path="res://src/Combat/DamageSource.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Objects/DialogueNode.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 100, 5 )
@@ -38,13 +39,13 @@ __meta__ = {
 [node name="Column" type="VBoxContainer" parent="CanvasLayer/DebugDock"]
 margin_left = 16.0
 margin_top = 16.0
-margin_right = 225.0
+margin_right = 232.0
 margin_bottom = 819.0
 
 [node name="DebugPanel" parent="CanvasLayer/DebugDock/Column" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 209.0
+margin_right = 216.0
 margin_bottom = 196.0
 reference_path = NodePath("../../../../Player/StateMachine/Move")
 properties = PoolStringArray( "velocity", "max_speed", "acceleration" )
@@ -53,7 +54,7 @@ properties = PoolStringArray( "velocity", "max_speed", "acceleration" )
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 204.0
-margin_right = 209.0
+margin_right = 216.0
 margin_bottom = 332.0
 reference_path = NodePath("../../../../Player/StateMachine")
 properties = PoolStringArray( "_state_name" )
@@ -62,7 +63,7 @@ properties = PoolStringArray( "_state_name" )
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 340.0
-margin_right = 209.0
+margin_right = 216.0
 margin_bottom = 468.0
 reference_path = NodePath("../../../../Player/Hook/StateMachine")
 properties = PoolStringArray( "_state_name" )
@@ -71,10 +72,19 @@ properties = PoolStringArray( "_state_name" )
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 476.0
-margin_right = 209.0
+margin_right = 216.0
 margin_bottom = 604.0
 reference_path = NodePath("../../../../Player/Stats")
 properties = PoolStringArray( "health" )
+
+[node name="DebugPanel5" parent="CanvasLayer/DebugDock/Column" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 612.0
+margin_right = 216.0
+margin_bottom = 740.0
+reference_path = NodePath("../../../../DialogueNode")
+properties = PoolStringArray( "dialogue_start" )
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( -5, 0 )
@@ -89,7 +99,6 @@ cell_size = Vector2( 16, 16 )
 collision_layer = 8
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 786451, 0, 0, 786452, 0, 0, 786453, 0, 0 )
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 3 )]
 follow_viewport_enable = false
@@ -115,6 +124,9 @@ position = Vector2( 594.49, -4.74058 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240.547, 270.133 )
 
+[node name="TargetCirce" parent="Player/Hook" index="2"]
+color = Color( 0.815682, 0.859375, 0.060425, 1 )
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( 239.868, 157.444 )
 collision_layer = 4
@@ -130,6 +142,15 @@ damage = 10
 
 [node name="CollisionShape2D" parent="DamageSource" index="0"]
 shape = SubResource( 2 )
+
+[node name="DialogueNode" parent="." instance=ExtResource( 10 )]
+position = Vector2( 269.855, 276.048 )
+collision_layer = 1
+collision_mask = 2147483648
+actor_1_text_color = Color( 0.933333, 0.0470588, 0.0470588, 1 )
+actor_player = NodePath("../Player")
+dialogue_lines = [ "actor_player", "test this is a test that shouldn't be underestimated", "", "", "" ]
+active = true
 
 [editable path="Player"]
 
