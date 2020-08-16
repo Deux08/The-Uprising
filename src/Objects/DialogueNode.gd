@@ -34,6 +34,7 @@ onready var player_text = get_node("../Player/Interact/PlayerTalk")
 onready var player_animation = get_node("../Player/Skin/AnimationPlayer")
 
 signal line_finished
+signal dialogue_finished
 
 func _ready():
 	print("Dialogue Ready")
@@ -164,6 +165,7 @@ func dialogue():
 				$dialogue_placer/speaker_name.hide()
 				$dialogue_placer/text_box.hide()
 				#director.zoom(Vector2(0.6, 0.6), 1.0)
+				emit_signal("dialogue_finished")
 				player.talking = false
 				player.hook.is_active = true
 				if autoDisable:
