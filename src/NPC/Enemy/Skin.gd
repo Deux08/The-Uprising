@@ -1,10 +1,9 @@
 extends Node2D
 
 signal animation_finished(name)
-signal attackRegion
 
 onready var anim: AnimationPlayer = $AnimationPlayer
-onready var sprite: AnimatedSprite = $Alwin
+onready var sprite: AnimatedSprite = $Skeleton
 
 var _current_animation = ""
 
@@ -14,11 +13,9 @@ func _ready() -> void:
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	emit_signal("animation_finished", anim_name)
 
-func play(anim_name: String, data: Dictionary = {}) -> void:
+func play(anim_name: String) -> void:
 	_current_animation = anim_name
 	assert(anim_name in anim.get_animation_list())
-	if "from" in data:
-		position = data["from"]
 	anim.stop()
 	anim.play(anim_name)
 

@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/theme/gdquest.theme" type="Theme" id=1]
 [ext_resource path="res://src/UI/debug/DebugPanel.gd" type="Script" id=2]
-[ext_resource path="res://assets/theme/fonts/font_title.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/theme/fonts/montserrat/Montserrat-Black.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Assets/theme/gdquest.theme" type="Theme" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+use_filter = true
+font_data = ExtResource( 3 )
 
 [node name="DebugPanel" type="PanelContainer"]
 anchor_right = 1.0
@@ -25,7 +30,7 @@ margin_right = 387.0
 margin_bottom = 54.0
 rect_min_size = Vector2( 0, 54 )
 theme = ExtResource( 4 )
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "DebugPanel"
 align = 1
 valign = 1

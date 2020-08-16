@@ -27,9 +27,15 @@ func _on_Hook_hooked_onto_target(target_global_position: Vector2) -> void:
 func _on_PassThrough_body_exited(body) -> void:
 	owner.set_collision_mask_bit(PASS_THROUGH_LAYER, true)
 
+func _on_Stats_damage_taken() -> void:
+	return
+
 func unhandled_input(event: InputEvent) -> void:
 	if owner.talking:
 		return
+		
+	if event.is_action_pressed("attack"):
+		_state_machine.transition_to("Move/Attack")
 	
 	if owner.is_on_floor() and event.is_action_pressed("jump"):
 		_state_machine.transition_to("Move/Air", { impulse = jump_impulse })
@@ -54,13 +60,13 @@ func enter(msg: Dictionary = {}) -> void:
 	owner.hook.connect("hooked_onto_target", self, "_on_Hook_hooked_onto_target", [], CONNECT_DEFERRED)
 	owner.stats.connect("damage_taken", self, "_on_Stats_damage_taken")
 	$Air.connect("jumped", $Idle.jump_delay, "start")
-	owner.pass_through.connect("body_exited", self, "_onPassThrough_body_exited")
+	owner.pass_through.connect("body_exited", self, "_on_PassThrough_body_exited")
 
 func exit() -> void:
 	owner.hook.disconnect("hooked_onto_target", self, "_on_Hook_hooked_onto_target")
 	owner.stats.disconnect("damage_taken", self, "_on_Stats_damage_taken")
 	$Air.disconnect("jumped", $Idle.jump_delay, "start")
-	owner.pass_through.disconnect("body_exited", self, "_onPassThrough_body_exited")
+	owner.pass_through.disconnect("body_exited", self, "_on_PassThrough_body_exited")
 
 static func calculate_velocity(
 		old_velocity: Vector2,

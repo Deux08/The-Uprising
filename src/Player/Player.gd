@@ -10,7 +10,6 @@ onready var collider: CollisionShape2D = $CollisionShape2D
 onready var hook: Hook = $Hook
 
 # Environment detection nodes for movement characteristics
-onready var ledge_wall_detector: LedgeWallDetector = $LedgeWallDetector
 onready var floor_detector: FloorDetector = $FloorDetector
 onready var pass_through: Area2D = $PassThrough
 
@@ -21,6 +20,7 @@ onready var scenic_camera: Camera2D = $ScenicCamera
 # Health and Combat related nodes
 onready var stats: Stats = $Stats
 onready var health_bar: Control = $HealthBar
+onready var attack_radius: Area2D = $AttackRadius
 
 # FLOOR NORMAL is a variable that affects which direction is the floor.
 # Vector2.UP is a Vector2(0,-1) value. the -1 y value indicates that the top is up and the bottom is down.
@@ -38,12 +38,16 @@ var talking = false
 func _ready() -> void:
 	# The signal comes from the Stats node
 	stats.connect("health_depleted", self, "_on_Player_health_depleted")
+	stats.connect("health_changed", self, "_on_Player_health_changed")
 	health_bar._on_max_health_updated(stats.max_health)
 	activate_scenic_camera(false)
 	
 func take_damage(source: Hit) -> void:
 	stats.take_damage(source)
 	health_bar._on_health_updated(stats.health, source.damage)
+
+func _on_Player_health_changed(health: int, old_health: int) -> void:
+	health_bar._on_health_updated(health, health - old_health)
 
 func _on_Player_health_depleted() -> void:
 	state_machine.transition_to("Death")
@@ -62,7 +66,7 @@ func set_is_active(value: bool) -> void:
 		return
 	collider.disabled = not value	
 	hook.is_active = value
-	ledge_wall_detector.is_active = value
+	#ledge_wall_detector.is_active = value
 
 func _set_Player_respawn_point(location: Vector2) -> void:
 	_start_position = location

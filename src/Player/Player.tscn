@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/States/Run.gd" type="Script" id=2]
@@ -9,7 +9,7 @@
 [ext_resource path="res://src/Player/Skin.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Player/States/Hook.gd" type="Script" id=8]
 [ext_resource path="res://src/Player/States/Debug.gd" type="Script" id=9]
-[ext_resource path="res://src/Player/LedgeWallDetector.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Combat/HealthBar.gd" type="Script" id=10]
 [ext_resource path="res://src/Player/States/Ledge.gd" type="Script" id=11]
 [ext_resource path="res://src/Player/FloorDetector.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/Player/Wall.gd" type="Script" id=13]
@@ -19,10 +19,12 @@
 [ext_resource path="res://src/Player/Camera/CameraRig.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/Combat/HitBox/HitBox.tscn" type="PackedScene" id=19]
-[ext_resource path="res://src/Combat/HealthBar.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Assets/Icons/Under.png" type="Texture" id=20]
 [ext_resource path="res://src/Player/Interact.tscn" type="PackedScene" id=21]
-[ext_resource path="res://src/Combat/DamageSource.gd" type="Script" id=22]
+[ext_resource path="res://src/Player/AttackRadius.gd" type="Script" id=22]
 [ext_resource path="res://src/Player/States/Attack.gd" type="Script" id=23]
+[ext_resource path="res://Assets/Icons/Progress.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Icons/Over.png" type="Texture" id=25]
 [ext_resource path="res://src/Player/Player.gd" type="Script" id=59]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -30,8 +32,11 @@ radius = 5.61291
 height = 17.0256
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 5.44322
-height = 17.6474
+radius = 5.981
+height = 16.189
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10.6172, 13.2543 )
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 0, 0.250271 )
@@ -39,13 +44,9 @@ collision_mask = 110
 script = ExtResource( 59 )
 
 [node name="Hook" parent="." instance=ExtResource( 6 )]
+position = Vector2( -0.0625076, 0 )
 
 [node name="Skin" parent="." instance=ExtResource( 7 )]
-
-[node name="Alwin" parent="Skin" index="0"]
-frame = 1
-
-[node name="LedgeWallDetector" parent="." instance=ExtResource( 10 )]
 
 [node name="FloorDetector" parent="." instance=ExtResource( 12 )]
 
@@ -61,12 +62,56 @@ zoom = Vector2( 0.3, 0.3 )
 
 [node name="PassThrough" parent="." instance=ExtResource( 14 )]
 
-[node name="HealthBar" parent="." instance=ExtResource( 20 )]
+[node name="HealthBar" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = -11.0035
 margin_top = 18.9578
 margin_right = -11.0035
 margin_bottom = 18.9578
 rect_scale = Vector2( 0.4, 0.3 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBarUnder" type="TextureProgress" parent="HealthBar"]
+anchor_left = -0.00123
+anchor_right = -0.00123
+margin_left = 0.0897903
+margin_right = 280.09
+margin_bottom = 60.0
+rect_scale = Vector2( 0.2, 0.2 )
+value = 100.0
+texture_under = ExtResource( 20 )
+texture_progress = ExtResource( 24 )
+tint_progress = Color( 0.894118, 0.0823529, 0.0823529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBarOver" type="TextureProgress" parent="HealthBar"]
+anchor_left = -0.00123
+anchor_right = -0.00123
+margin_left = 0.0897903
+margin_right = 280.09
+margin_bottom = 60.0
+rect_scale = Vector2( 0.2, 0.2 )
+value = 100.0
+texture_over = ExtResource( 25 )
+texture_progress = ExtResource( 24 )
+tint_progress = Color( 0.2, 0.815686, 0.0941176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpdateTween" type="Tween" parent="HealthBar"]
+playback_speed = 0.5
+playback/speed = 0.5
+
+[node name="PulseTween" type="Tween" parent="HealthBar"]
+
+[node name="FlashTween" type="Tween" parent="HealthBar"]
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 1 )
@@ -129,14 +174,23 @@ max_health = 100.0
 [node name="HitBox" parent="." instance=ExtResource( 19 )]
 position = Vector2( -0.314274, 3.37843 )
 
-[node name="CollisionShape2D" parent="HitBox" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2( 0, 0.0884228 )
 shape = SubResource( 2 )
 
 [node name="Interact" parent="." instance=ExtResource( 21 )]
 collision_mask = 33
 
 [node name="AttackRadius" type="Area2D" parent="."]
+position = Vector2( 18.8887, 3.78231 )
+collision_layer = 2147487744
+collision_mask = 2048
 script = ExtResource( 22 )
+damage = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]
+shape = SubResource( 3 )
+disabled = true
 
 [editable path="Skin"]
 

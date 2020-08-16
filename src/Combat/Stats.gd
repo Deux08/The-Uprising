@@ -13,8 +13,8 @@ var invulnerable := false
 export var max_health := 1.0 setget set_max_health
 var health := max_health
 
-export var attack: int = 1
-export var armor: int = 1
+#export var attack: int = 1
+#export var armor: int = 1
 
 
 func _ready() -> void:

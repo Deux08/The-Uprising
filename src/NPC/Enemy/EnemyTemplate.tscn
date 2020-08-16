@@ -1,0 +1,464 @@
+[gd_scene load_steps=57 format=2]
+
+[ext_resource path="res://Assets/Characters/Monsters/Skeleton/Walk.png" type="Texture" id=1]
+[ext_resource path="res://src/NPC/Enemy/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Characters/Monsters/Skeleton/Idle.png" type="Texture" id=3]
+[ext_resource path="res://src/NPC/Enemy/States/Move.gd" type="Script" id=4]
+[ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=5]
+[ext_resource path="res://src/NPC/Enemy/States/Roaming.gd" type="Script" id=6]
+[ext_resource path="res://src/NPC/Enemy/AttackRadius.gd" type="Script" id=7]
+[ext_resource path="res://src/NPC/Enemy/States/Attack.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Characters/Monsters/Skeleton/Attack2.png" type="Texture" id=9]
+[ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Combat/HealthBar.gd" type="Script" id=11]
+[ext_resource path="res://src/NPC/Enemy/States/TakeHit.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Characters/Monsters/Skeleton/Take Hit.png" type="Texture" id=13]
+[ext_resource path="res://src/Combat/DamageSource.gd" type="Script" id=14]
+[ext_resource path="res://src/NPC/Enemy/HitBox.gd" type="Script" id=15]
+[ext_resource path="res://src/NPC/Enemy/States/Death.gd" type="Script" id=16]
+[ext_resource path="res://Assets/Characters/Monsters/Skeleton/Death.png" type="Texture" id=17]
+[ext_resource path="res://src/NPC/Enemy/Skin.gd" type="Script" id=18]
+[ext_resource path="res://src/Combat/BloodSplatter.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Assets/Icons/Under.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Icons/Progress.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Icons/Over.png" type="Texture" id=22]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 150, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 300, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 450, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 9 )
+region = Rect2( 150, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 9 )
+region = Rect2( 300, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 9 )
+region = Rect2( 450, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 9 )
+region = Rect2( 600, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 9 )
+region = Rect2( 750, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 9 )
+region = Rect2( 900, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 9 )
+region = Rect2( 1050, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 1 )
+region = Rect2( 150, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 1 )
+region = Rect2( 300, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 1 )
+region = Rect2( 450, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 17 )
+region = Rect2( 150, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 17 )
+region = Rect2( 300, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 17 )
+region = Rect2( 450, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 13 )
+region = Rect2( 150, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 13 )
+region = Rect2( 300, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 13 )
+region = Rect2( 450, 0, 150, 150 )
+
+[sub_resource type="SpriteFrames" id=25]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "die",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
+"loop": true,
+"name": "take_hit",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=26]
+resource_name = "attack"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skeleton:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "attack" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Skeleton:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../AttackRadius/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "die"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skeleton:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "die" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Skeleton:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=28]
+resource_name = "idle"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skeleton:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "idle" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Skeleton:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "run"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skeleton:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "run" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Skeleton:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=30]
+resource_name = "take_hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skeleton:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "take_hit" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Skeleton:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3 ]
+}
+
+[sub_resource type="RectangleShape2D" id=31]
+extents = Vector2( 11.7298, 15.1685 )
+
+[sub_resource type="RectangleShape2D" id=32]
+extents = Vector2( 10, 16.3573 )
+
+[sub_resource type="RectangleShape2D" id=33]
+extents = Vector2( 11.9469, 14.9244 )
+
+[sub_resource type="RectangleShape2D" id=34]
+extents = Vector2( 7.71571, 14.8826 )
+
+[node name="Enemy" type="KinematicBody2D"]
+collision_layer = 2147483664
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="Skin" type="Node2D" parent="."]
+script = ExtResource( 18 )
+
+[node name="Skeleton" type="AnimatedSprite" parent="Skin"]
+scale = Vector2( 0.57804, 0.57804 )
+frames = SubResource( 25 )
+animation = "attack"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Skin"]
+anims/attack = SubResource( 26 )
+anims/die = SubResource( 27 )
+anims/idle = SubResource( 28 )
+anims/run = SubResource( 29 )
+anims/take_hit = SubResource( 30 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 31 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 11.2623, 0.417122 )
+enabled = true
+cast_to = Vector2( 0, 20 )
+collision_mask = 2
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 5 )
+initial_state = NodePath("Move/Roaming")
+
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource( 16 )
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
+
+[node name="Roaming" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 6 )
+
+[node name="Attack" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 8 )
+
+[node name="AttackDelay" type="Timer" parent="StateMachine/Move/Attack"]
+wait_time = 0.5
+one_shot = true
+
+[node name="TakeHit" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 12 )
+
+[node name="StunTimer" type="Timer" parent="StateMachine/Move/TakeHit"]
+wait_time = 0.5
+one_shot = true
+
+[node name="AttackRadius" type="Area2D" parent="."]
+position = Vector2( 28.3356, -5.1512 )
+collision_layer = 1024
+collision_mask = 0
+script = ExtResource( 7 )
+damage = 30
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]
+shape = SubResource( 32 )
+disabled = true
+
+[node name="BloodSplatter" parent="." instance=ExtResource( 19 )]
+selectedNode = NodePath("../StateMachine/Move/TakeHit")
+
+[node name="Stats" parent="." instance=ExtResource( 10 )]
+max_health = 30.0
+
+[node name="HealthBar" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -10.9444
+margin_top = 15.6108
+margin_right = -10.9444
+margin_bottom = 15.6108
+rect_scale = Vector2( 0.4, 0.3 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBarUnder" type="TextureProgress" parent="HealthBar"]
+anchor_left = -0.00123
+anchor_right = -0.00123
+margin_left = 0.0897903
+margin_right = 280.09
+margin_bottom = 60.0
+rect_scale = Vector2( 0.2, 0.2 )
+value = 100.0
+texture_under = ExtResource( 20 )
+texture_progress = ExtResource( 21 )
+tint_progress = Color( 0.894118, 0.0823529, 0.0823529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBarOver" type="TextureProgress" parent="HealthBar"]
+anchor_left = -0.00123
+anchor_right = -0.00123
+margin_left = 0.0897903
+margin_right = 280.09
+margin_bottom = 60.0
+rect_scale = Vector2( 0.2, 0.2 )
+value = 100.0
+texture_over = ExtResource( 22 )
+texture_progress = ExtResource( 21 )
+tint_progress = Color( 0.2, 0.815686, 0.0941176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpdateTween" type="Tween" parent="HealthBar"]
+playback_speed = 0.5
+playback/speed = 0.5
+
+[node name="PulseTween" type="Tween" parent="HealthBar"]
+
+[node name="FlashTween" type="Tween" parent="HealthBar"]
+
+[node name="AttackTrigger" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 40, 0 )
+
+[node name="HitBox" type="Area2D" parent="." groups=[
+"Enemy",
+]]
+collision_layer = 2048
+collision_mask = 1024
+script = ExtResource( 15 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource( 33 )
+
+[node name="HurtBox" type="Area2D" parent="." groups=[
+"Enemy",
+]]
+collision_layer = 1024
+collision_mask = 0
+script = ExtResource( 14 )
+damage = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2( 0, 0.074173 )
+shape = SubResource( 34 )
+[connection signal="timeout" from="StateMachine/Move/Attack/AttackDelay" to="StateMachine/Move/Attack" method="_on_AttackDelay_timeout"]
+[connection signal="timeout" from="StateMachine/Move/TakeHit/StunTimer" to="StateMachine/Move/TakeHit" method="_on_StunTimer_timeout"]
