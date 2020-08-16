@@ -17,12 +17,13 @@ func physics_process(delta):
 	move.velocity = owner.move_and_slide(move.velocity, owner.FLOOR_NORMAL)
 	
 	if owner.is_on_wall():
-		owner.raycast.position.x *= -1
 		move.flipDirection()
 	
-	if owner.raycast.is_colliding() == false:
+	if owner.right_raycast.is_colliding() == false:
 		move.flipDirection()
-		owner.raycast.position.x *= -1
+	
+	if owner.left_raycast.is_colliding() == false:
+		move.flipDirection()
 
 func enter(msg: Dictionary = {}) -> void:
 	var move: = get_parent()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/MapAsset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
@@ -8,14 +8,18 @@
 [ext_resource path="res://src/UI/debug/DebugDock.gd" type="Script" id=6]
 [ext_resource path="res://src/Objects/HookTarget.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/PassThrough.tres" type="TileSet" id=8]
+[ext_resource path="res://src/Combat/DamageSource.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/Objects/DialogueNode.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Objects/Checkpoint.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/NPC/Enemy/EnemyTemplate.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 100, 5 )
+extents = Vector2( 44.2446, 10 )
 
 [sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 100, 5 )
+
+[sub_resource type="RectangleShape2D" id=3]
 
 [node name="Arrival" type="Node2D"]
 position = Vector2( -0.210938, 0 )
@@ -124,14 +128,22 @@ position = Vector2( 240.547, 270.133 )
 [node name="TargetCirce" parent="Player/Hook" index="2"]
 color = Color( 0.815682, 0.859375, 0.060425, 1 )
 
+[node name="DamageSource" parent="." instance=ExtResource( 9 )]
+position = Vector2( 395.49, 273.678 )
+is_instakill = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageSource"]
+position = Vector2( -16.5638, -47.7552 )
+shape = SubResource( 1 )
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( 239.868, 157.444 )
 collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -14.4284, -96.77 )
-shape = SubResource( 1 )
+position = Vector2( 32.6615, -102.236 )
+shape = SubResource( 2 )
 
 [node name="DialogueNode" parent="." instance=ExtResource( 10 )]
 position = Vector2( 486.958, 321.851 )
@@ -142,7 +154,7 @@ actor_player = NodePath("../Player")
 dialogue_lines = [ "actor_player", "test this is a test that shouldn't be underestimated", "end_dialogue" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueNode"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Enemy" parent="." instance=ExtResource( 12 )]
 position = Vector2( 814.28, -33.2036 )

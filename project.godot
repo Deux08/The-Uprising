@@ -200,6 +200,7 @@ interact={
 2d_physics/layer_5="Enemies"
 2d_physics/layer_6="Interactable"
 2d_physics/layer_7="Checkpoint"
+2d_physics/layer_8="Block"
 2d_physics/layer_11="DamageSource"
 2d_physics/layer_12="Hitbox"
 2d_physics/layer_13="AttackSource"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://src/MapAsset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
@@ -13,107 +13,112 @@
 [ext_resource path="res://Assets/Characters/Lana/Idle.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Characters/NPCs/3 Man/Man_idle.png" type="Texture" id=12]
 [ext_resource path="res://src/Combat/DamageSource.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/Main/Departure.gd" type="Script" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 65.9808 )
 
 [sub_resource type="TileSet" id=2]
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 0, 180, 180 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 180, 0, 180, 180 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=5]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 360, 0, 180, 180 )
 
-[sub_resource type="AtlasTexture" id=18]
+[sub_resource type="AtlasTexture" id=6]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 540, 0, 180, 180 )
 
-[sub_resource type="AtlasTexture" id=19]
+[sub_resource type="AtlasTexture" id=7]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 720, 0, 180, 180 )
 
-[sub_resource type="AtlasTexture" id=20]
+[sub_resource type="AtlasTexture" id=8]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 900, 0, 180, 180 )
 
-[sub_resource type="AtlasTexture" id=21]
+[sub_resource type="AtlasTexture" id=9]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 1080, 0, 180, 180 )
 
-[sub_resource type="AtlasTexture" id=22]
+[sub_resource type="AtlasTexture" id=10]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 1260, 0, 180, 180 )
 
-[sub_resource type="AtlasTexture" id=23]
+[sub_resource type="AtlasTexture" id=11]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 1440, 0, 180, 180 )
 
-[sub_resource type="AtlasTexture" id=24]
+[sub_resource type="AtlasTexture" id=12]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 1620, 0, 180, 180 )
 
-[sub_resource type="AtlasTexture" id=25]
+[sub_resource type="AtlasTexture" id=13]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 1800, 0, 180, 180 )
 
-[sub_resource type="SpriteFrames" id=9]
+[sub_resource type="SpriteFrames" id=14]
 animations = [ {
-"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=15]
 flags = 4
 atlas = ExtResource( 12 )
 region = Rect2( 0, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=16]
 flags = 4
 atlas = ExtResource( 12 )
 region = Rect2( 48, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=17]
 flags = 4
 atlas = ExtResource( 12 )
 region = Rect2( 96, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=18]
 flags = 4
 atlas = ExtResource( 12 )
 region = Rect2( 144, 0, 48, 48 )
 
-[sub_resource type="SpriteFrames" id=14]
+[sub_resource type="SpriteFrames" id=19]
 animations = [ {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=26]
+[sub_resource type="RectangleShape2D" id=20]
 extents = Vector2( 748.889, 6.26938 )
 
-[node name="Arrival" type="Node2D"]
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 28.5686, 10 )
+
+[node name="Depature" type="Node2D"]
+script = ExtResource( 14 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -143,7 +148,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 225.0
 margin_bottom = 196.0
-reference_path = NodePath("../../../../Player/StateMachine/Move")
+reference_path = NodePath("../../../../../Depature/Player/StateMachine/Move")
 properties = PoolStringArray( "velocity", "max_speed", "acceleration" )
 
 [node name="DebugPanel2" parent="CanvasLayer/DebugDock/Column" instance=ExtResource( 5 )]
@@ -152,7 +157,7 @@ anchor_bottom = 0.0
 margin_top = 204.0
 margin_right = 225.0
 margin_bottom = 332.0
-reference_path = NodePath("../../../../Player/StateMachine")
+reference_path = NodePath("../../../../../Depature/Player/StateMachine")
 properties = PoolStringArray( "_state_name" )
 
 [node name="DebugPanel3" parent="CanvasLayer/DebugDock/Column" instance=ExtResource( 5 )]
@@ -161,7 +166,7 @@ anchor_bottom = 0.0
 margin_top = 340.0
 margin_right = 225.0
 margin_bottom = 468.0
-reference_path = NodePath("../../../../Player/Hook/StateMachine")
+reference_path = NodePath("../../../../../Depature/Player/Hook/StateMachine")
 properties = PoolStringArray( "_state_name" )
 
 [node name="DebugPanel4" parent="CanvasLayer/DebugDock/Column" instance=ExtResource( 5 )]
@@ -170,7 +175,7 @@ anchor_bottom = 0.0
 margin_top = 476.0
 margin_right = 225.0
 margin_bottom = 604.0
-reference_path = NodePath("../../../../Player/Skin")
+reference_path = NodePath("../../../../../Depature/Player/Skin")
 properties = PoolStringArray( "_current_animation" )
 
 [node name="TileMap2" type="TileMap" parent="."]
@@ -219,16 +224,22 @@ position = Vector2( 4579.07, 299.552 )
 [node name="TargetCirce" parent="Player/Hook" index="2"]
 color = Color( 0.815682, 0.859375, 0.060425, 1 )
 
+[node name="StateMachine" parent="Player/Hook" index="5"]
+initial_state = NodePath("../../../../Depature/Player/Hook/StateMachine/Aim")
+
 [node name="Alwin" parent="Player/Skin" index="0"]
 flip_h = true
+
+[node name="StateMachine" parent="Player" index="8"]
+initial_state = NodePath("../../../Depature/Player/StateMachine/Move/Idle")
 
 [node name="DialogueNode7" parent="." instance=ExtResource( 9 )]
 position = Vector2( 401.865, 0.883827 )
 collision_mask = 2147483648
 actor_1_text_color = Color( 0.854902, 0.133333, 0.133333, 1 )
 actor_2_text_color = Color( 0.784314, 0.203922, 0.831373, 1 )
-actor_1 = NodePath("../Villager")
-actor_2 = NodePath("../Lana")
+actor_1 = NodePath("../../Depature/Villager")
+actor_2 = NodePath("../../Depature/Lana")
 dialogue_lines = [ "actor_2", "*OPEN THIS LETTER ONCE YOU'RE UP*", "Ah finally, you have woken up !!! You have been out for almost 24 hours", "Apologies for the hit, that was the only way to incapacitate you", "I want to show what you have done and what you're actually doing", "Follow the path you came from and meet me there", "You will finally get to see the truth", "end_dialogue" ]
 auto = true
 
@@ -241,8 +252,8 @@ position = Vector2( 401.865, 0.883827 )
 collision_mask = 2147483648
 actor_1_text_color = Color( 0.854902, 0.133333, 0.133333, 1 )
 actor_2_text_color = Color( 0.784314, 0.203922, 0.831373, 1 )
-actor_1 = NodePath("../Villager")
-actor_2 = NodePath("../Lana")
+actor_1 = NodePath("../../Depature/Villager")
+actor_2 = NodePath("../../Depature/Lana")
 dialogue_lines = [ "actor_player", "Hmmm, why are there so many dead civilians ?? Probably a victim of the invasion...", "end_dialogue" ]
 auto = true
 
@@ -250,17 +261,17 @@ auto = true
 position = Vector2( 2550.78, 114.718 )
 shape = SubResource( 1 )
 
-[node name="DialogueNode9" parent="." instance=ExtResource( 9 )]
+[node name="FinalDialogue" parent="." instance=ExtResource( 9 )]
 position = Vector2( 401.865, 0.883827 )
 collision_mask = 2147483648
 actor_1_text_color = Color( 0.854902, 0.133333, 0.133333, 1 )
 actor_2_text_color = Color( 0.784314, 0.203922, 0.831373, 1 )
-actor_1 = NodePath("../Villager")
-actor_2 = NodePath("../Lana")
+actor_1 = NodePath("../../Depature/Villager")
+actor_2 = NodePath("../../Depature/Lana")
 dialogue_lines = [ "actor_2", "Ahh.. you're finally heree", "actor_1", "HE'S THE KILLER, KILL HIM NOW", "actor_2", "STOPP !!", "He's one of us now", "actor_player", "one of us ?!?!", "actor_2", "Yes, you see, you have been manipulated with the medicine given by INOX", "Were you given a shot on the day you were supposed to go on a mission ?", "actor_player", "yes i was given a shot, what about it ?", "actor_2", "The shot was actually a drug manufactured by INOX to make you see us normal people look like the infected", "They have been manipulating you !", "actor_player", "er...", "actor_2", "Yes it's true, we have a sample taken from one of your team members.", "It is given to Ron, one of our friends", "He suddenly shows us signs of aggression and started trying to kill us", "You see, you have finally seen the truth", "You have the potential of becoming one of our warriors to fight back against INOX Academy", "actor_player", "The dead bodies finally made sense to me", "i am so sorry for what i've done", "I wanna help you fight back against INOX academy", "actor_2", "Then let's get started !", "end_dialogue" ]
 auto = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueNode9"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinalDialogue"]
 position = Vector2( -207.176, 225.389 )
 shape = SubResource( 1 )
 
@@ -269,8 +280,8 @@ position = Vector2( 401.865, 0.883827 )
 collision_mask = 2147483648
 actor_1_text_color = Color( 0.854902, 0.133333, 0.133333, 1 )
 actor_2_text_color = Color( 0.784314, 0.203922, 0.831373, 1 )
-actor_1 = NodePath("../Villager")
-actor_2 = NodePath("../Lana")
+actor_1 = NodePath("../../Depature/Villager")
+actor_2 = NodePath("../../Depature/Lana")
 dialogue_lines = [ "actor_player", "hmmmm....", "Why do i only see dead civilians, instead of infected ones", "I swear that this place was covered with the infected the other day", "end_dialogue" ]
 auto = true
 
@@ -296,24 +307,26 @@ format = 1
 [node name="Lana2" type="AnimatedSprite" parent="."]
 position = Vector2( 105.138, 269.394 )
 scale = Vector2( 0.788704, 0.775727 )
-frames = SubResource( 9 )
-frame = 5
+frames = SubResource( 14 )
+frame = 1
 playing = true
 
 [node name="Man" type="AnimatedSprite" parent="."]
 position = Vector2( 154.555, 264.983 )
-frames = SubResource( 14 )
+frames = SubResource( 19 )
 
 [node name="DamageSource" parent="." instance=ExtResource( 13 )]
 position = Vector2( 2354.15, 278.28 )
+is_instakill = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageSource"]
 position = Vector2( -373.365, 31.403 )
-shape = SubResource( 26 )
+shape = SubResource( 20 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DamageSource"]
-position = Vector2( 972.382, -53.1414 )
-shape = SubResource( 26 )
+position = Vector2( 385.47, -64.369 )
+shape = SubResource( 21 )
+[connection signal="dialogue_finished" from="FinalDialogue" to="." method="_on_FinalDialogue_dialogue_finished"]
 
 [editable path="Player"]
 
@@ -324,7 +337,5 @@ shape = SubResource( 26 )
 [editable path="DialogueNode7"]
 
 [editable path="DialogueNode8"]
-
-[editable path="DialogueNode9"]
 
 [editable path="DialogueNode10"]
