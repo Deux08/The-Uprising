@@ -87,6 +87,7 @@ run/main_scene="res://src/Main/MainMenu.tscn"
 
 Events="*res://src/Autoload/Events.gd"
 Steering="*res://src/Autoload/Steering.gd"
+SceneChanger="*res://src/Autoload/SceneChanger.tscn"
 
 [debug]
 
