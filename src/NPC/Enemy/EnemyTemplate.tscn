@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://Assets/Characters/Monsters/Skeleton/Walk.png" type="Texture" id=1]
 [ext_resource path="res://src/NPC/Enemy/Enemy.gd" type="Script" id=2]
@@ -10,7 +10,7 @@
 [ext_resource path="res://src/NPC/Enemy/States/Attack.gd" type="Script" id=8]
 [ext_resource path="res://Assets/Characters/Monsters/Skeleton/Attack2.png" type="Texture" id=9]
 [ext_resource path="res://src/Combat/Stats.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/Combat/HealthBar.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Combat/HealthBar.gd" type="Script" id=11]
 [ext_resource path="res://src/NPC/Enemy/States/TakeHit.gd" type="Script" id=12]
 [ext_resource path="res://Assets/Characters/Monsters/Skeleton/Take Hit.png" type="Texture" id=13]
 [ext_resource path="res://src/Combat/DamageSource.gd" type="Script" id=14]
@@ -19,6 +19,9 @@
 [ext_resource path="res://Assets/Characters/Monsters/Skeleton/Death.png" type="Texture" id=17]
 [ext_resource path="res://src/NPC/Enemy/Skin.gd" type="Script" id=18]
 [ext_resource path="res://src/Combat/BloodSplatter.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Assets/Icons/Under.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Icons/Progress.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Icons/Over.png" type="Texture" id=22]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
@@ -146,6 +149,7 @@ animations = [ {
 
 [sub_resource type="Animation" id=26]
 resource_name = "attack"
+length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("Skeleton:animation")
 tracks/0/interp = 1
@@ -170,19 +174,17 @@ tracks/1/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
+tracks/2/type = "value"
+tracks/2/path = NodePath("../AttackRadius/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.6 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "attackRegion" ],
-"method": "emit_signal"
-} ]
+"times": PoolRealArray( 0, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
 }
 
 [sub_resource type="Animation" id=27]
@@ -321,7 +323,6 @@ script = ExtResource( 18 )
 scale = Vector2( 0.57804, 0.57804 )
 frames = SubResource( 25 )
 animation = "attack"
-frame = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Skin"]
 anims/attack = SubResource( 26 )
@@ -363,6 +364,7 @@ one_shot = true
 script = ExtResource( 12 )
 
 [node name="StunTimer" type="Timer" parent="StateMachine/Move/TakeHit"]
+wait_time = 0.5
 one_shot = true
 
 [node name="AttackRadius" type="Area2D" parent="."]
@@ -382,12 +384,56 @@ selectedNode = NodePath("../StateMachine/Move/TakeHit")
 [node name="Stats" parent="." instance=ExtResource( 10 )]
 max_health = 30.0
 
-[node name="HealthBar" parent="." instance=ExtResource( 11 )]
+[node name="HealthBar" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = -10.9444
 margin_top = 15.6108
 margin_right = -10.9444
 margin_bottom = 15.6108
 rect_scale = Vector2( 0.4, 0.3 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBarUnder" type="TextureProgress" parent="HealthBar"]
+anchor_left = -0.00123
+anchor_right = -0.00123
+margin_left = 0.0897903
+margin_right = 280.09
+margin_bottom = 60.0
+rect_scale = Vector2( 0.2, 0.2 )
+value = 100.0
+texture_under = ExtResource( 20 )
+texture_progress = ExtResource( 21 )
+tint_progress = Color( 0.894118, 0.0823529, 0.0823529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBarOver" type="TextureProgress" parent="HealthBar"]
+anchor_left = -0.00123
+anchor_right = -0.00123
+margin_left = 0.0897903
+margin_right = 280.09
+margin_bottom = 60.0
+rect_scale = Vector2( 0.2, 0.2 )
+value = 100.0
+texture_over = ExtResource( 22 )
+texture_progress = ExtResource( 21 )
+tint_progress = Color( 0.2, 0.815686, 0.0941176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpdateTween" type="Tween" parent="HealthBar"]
+playback_speed = 0.5
+playback/speed = 0.5
+
+[node name="PulseTween" type="Tween" parent="HealthBar"]
+
+[node name="FlashTween" type="Tween" parent="HealthBar"]
 
 [node name="AttackTrigger" type="RayCast2D" parent="."]
 enabled = true
@@ -403,7 +449,7 @@ script = ExtResource( 15 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource( 33 )
 
-[node name="AttackRegion" type="Area2D" parent="." groups=[
+[node name="HurtBox" type="Area2D" parent="." groups=[
 "Enemy",
 ]]
 collision_layer = 1024
@@ -411,7 +457,7 @@ collision_mask = 0
 script = ExtResource( 14 )
 damage = 10
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRegion"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2( 0, 0.074173 )
 shape = SubResource( 34 )
 [connection signal="timeout" from="StateMachine/Move/Attack/AttackDelay" to="StateMachine/Move/Attack" method="_on_AttackDelay_timeout"]

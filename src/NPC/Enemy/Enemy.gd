@@ -6,7 +6,7 @@ const DIRECTION_LEFT = "Left"
 
 var direction = "Right"
 
-var dead = false
+export var dead = false
 
 onready var state_machine: StateMachine = $StateMachine
 
@@ -21,7 +21,7 @@ onready var stats: Stats = $Stats
 onready var health_bar: Control = $HealthBar
 onready var attack_radius: Area2D = $AttackRadius
 onready var hitbox: Area2D = $HitBox
-onready var attack_region: DamageSource = $AttackRegion
+onready var hurtbox: DamageSource = $HurtBox
 export(bool) var enable_blood = true
 
 func take_damage(source: Hit) -> void:
@@ -34,7 +34,7 @@ func deactivate() -> void:
 	remove_child(health_bar)
 	remove_child(attack_radius)
 	remove_child(hitbox)
-	remove_child(attack_region)
+	remove_child(hurtbox)
 	remove_child(raycast)
 	remove_child(attack_trigger)
 	remove_child(stats)

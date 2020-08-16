@@ -1,6 +1,5 @@
 extends Node2D
 
-signal attackRegion
 signal animation_finished(name)
 
 onready var anim: AnimationPlayer = $AnimationPlayer

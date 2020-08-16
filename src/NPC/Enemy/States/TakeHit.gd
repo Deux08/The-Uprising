@@ -14,6 +14,8 @@ func enter(msg: Dictionary = {}) -> void:
 	timer.start()
 
 func exit() -> void:
+	if owner.dead:
+		return
 	var move = get_parent()
 	move.exit()
 

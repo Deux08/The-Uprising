@@ -21,6 +21,7 @@ func enter(msg: Dictionary = {}) -> void:
 
 
 func exit() -> void:
+	owner.stats.heal(owner.stats.max_health)
 	owner.is_active = true
 	owner.camera_rig.is_active = true
 	owner.hook.visible = true
