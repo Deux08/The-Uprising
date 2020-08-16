@@ -157,7 +157,7 @@ position = Vector2( 892.668, 96.4146 )
 collision_mask = 2147483666
 
 [node name="Enemy4" parent="." instance=ExtResource( 12 )]
-position = Vector2( 958.972, 160.831 )
+position = Vector2( 295.272, -0.72403 )
 collision_mask = 2147483666
 
 [node name="Enemy5" parent="." instance=ExtResource( 12 )]
@@ -165,7 +165,7 @@ position = Vector2( 862.465, 225.248 )
 collision_mask = 2147483666
 
 [node name="Enemy6" parent="." instance=ExtResource( 12 )]
-position = Vector2( 913.668, 160.595 )
+position = Vector2( 328.892, 0.629044 )
 collision_mask = 2147483666
 
 [node name="Enemy7" parent="." instance=ExtResource( 12 )]

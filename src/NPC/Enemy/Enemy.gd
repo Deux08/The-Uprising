@@ -4,7 +4,7 @@ const FLOOR_NORMAL = Vector2(0, -1)
 const DIRECTION_RIGHT = "Right"
 const DIRECTION_LEFT = "Left"
 
-var direction = "Right"
+export(String) var direction = "Right"
 
 export var dead = false
 
