@@ -145,7 +145,7 @@ dialogue_lines = [ "actor_player", "test this is a test that shouldn't be undere
 shape = SubResource( 2 )
 
 [node name="Enemy" parent="." instance=ExtResource( 12 )]
-position = Vector2( 812.206, -31.475 )
+position = Vector2( 814.28, -33.2036 )
 collision_mask = 2147483666
 
 [node name="Enemy2" parent="." instance=ExtResource( 12 )]

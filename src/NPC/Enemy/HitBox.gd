@@ -13,7 +13,7 @@ func _on_area_entered(damage_source: Area2D) -> void:
 	if (damage_source.is_in_group("Enemy")):
 		return
 	var hit := Hit.new(damage_source)
-	owner.take_damage(hit)
+d	owner.take_damage(hit)
 
 
 func set_is_active(value: bool) -> void:

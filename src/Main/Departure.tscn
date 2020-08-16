@@ -157,11 +157,11 @@ actor_1_text_color = Color( 0.854902, 0.133333, 0.133333, 1 )
 actor_2_text_color = Color( 0.784314, 0.203922, 0.831373, 1 )
 actor_1 = NodePath("../Villager")
 actor_2 = NodePath("../Lana")
-dialogue_lines = [ "actor_2", "Ahh.. you're finally heree", "actor_1", "HE'S THE KILLER, KILL HIM NOW", "actor_2", "STOPP !!", "He's one of us now", "actor_player", "one of us ?!?!", "actor_2", "Yes, you see, you have been manipulated with the medicine given by INOX", "Were you given a shot on the day you were supposed to go on a mission ?", "actor_player", "yes i was given a shot, what about it ?", "actor_2", "The shot was actually a drug manufactured by INOX Academy to make you us normal people as an infected", "They have been manipulating you !", "actor_player", "er...", "actor_2", "Yes it's true, we have a sample taken from one of your team members.", "It is given to Ron, one of our friends", "He suddenly shows us signs of aggression and started trying to kill us", "You see, you have finally seen the truth", "You have the potential of becoming one of warriors to fight back against INOX Academy", "actor_player", "The dead bodies finally made sense to me", "i am so sorry for what i've done", "I wanna help you fight back against INOX academy", "actor_2", "Then let's get started !", "end_dialogue" ]
+dialogue_lines = [ "actor_2", "Ahh.. you're finally heree", "actor_1", "HE'S THE KILLER, KILL HIM NOW", "actor_2", "STOPP !!", "He's one of us now", "actor_player", "one of us ?!?!", "actor_2", "Yes, you see, you have been manipulated with the medicine given by INOX", "Were you given a shot on the day you were supposed to go on a mission ?", "actor_player", "yes i was given a shot, what about it ?", "actor_2", "The shot was actually a drug manufactured by INOX Academy to make you see us normal people look like the infected", "They have been manipulating you !", "actor_player", "er...", "actor_2", "Yes it's true, we have a sample taken from one of your team members.", "It is given to Ron, one of our friends", "He suddenly shows us signs of aggression and started trying to kill us", "You see, you have finally seen the truth", "You have the potential of becoming one of our warriors to fight back against INOX Academy", "actor_player", "The dead bodies finally made sense to me", "i am so sorry for what i've done", "I wanna help you fight back against INOX academy", "actor_2", "Then let's get started !", "end_dialogue" ]
 auto = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueNode9"]
-position = Vector2( -207.176, 224.975 )
+position = Vector2( -207.176, 225.389 )
 shape = SubResource( 1 )
 
 [node name="DialogueNode10" parent="." instance=ExtResource( 9 )]
