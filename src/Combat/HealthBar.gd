@@ -24,7 +24,6 @@ func _on_health_updated(health, amount):
 	health_over.value = health
 	update_tween.interpolate_property(health_under, "value", health_under.value, health, 0.4, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.4)
 	update_tween.start()
-	print("Updating")
 	_assign_color(health)
 	if amount < 0:
 		_flash_damage()

@@ -10,6 +10,9 @@ func _on_Player_animation_finished(anim_name: String) -> void:
 	else:
 		_state_machine.transition_to("Move/Air")
 
+func _on_AttackRegion_animation() -> void:
+	owner.attack_radius.attack(true)
+
 func physics_process(delta: float) -> void:
 	var move = get_parent()
 	if owner.is_on_floor():
@@ -27,7 +30,7 @@ func enter(msg: Dictionary = {}) -> void:
 			owner.attack_radius.transform.origin.x = -owner.attack_radius.transform.origin.x
 	owner.skin.play("slash")
 	owner.skin.connect("animation_finished", self, "_on_Player_animation_finished")
-	owner.attack_radius.attack(true)
+	owner.skin.connect("attackRegion", self, "_on_AttackRegion_animation")
 
 func exit() -> void:
 	var move = get_parent()

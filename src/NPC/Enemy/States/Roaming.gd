@@ -7,7 +7,6 @@ func physics_process(delta):
 		move.velocity.x = move.speed
 		owner.skin.sprite.flip_h = false
 		owner.attack_trigger.cast_to.x = 40
-		print(owner.attack_trigger.cast_to.x )
 	elif (owner.direction == owner.DIRECTION_LEFT):
 		move.velocity.x = -move.speed
 		owner.skin.sprite.flip_h = true
@@ -19,14 +18,10 @@ func physics_process(delta):
 	
 	if owner.is_on_wall():
 		owner.raycast.position.x *= -1
-		if (owner.direction == owner.DIRECTION_RIGHT):
-			owner.direction = owner.DIRECTION_LEFT
-		elif (owner.direction == owner.DIRECTION_LEFT):
-			owner.direction = owner.DIRECTION_RIGHT
+		move.flipDirection()
 	
 	if owner.raycast.is_colliding() == false:
-		print(owner.raycast.get_collider())
-		flipDirection()
+		move.flipDirection()
 		owner.raycast.position.x *= -1
 
 func enter(msg: Dictionary = {}) -> void:
@@ -40,8 +35,4 @@ func exit() -> void:
 	var move: = get_parent()
 	move.exit()
 
-func flipDirection() -> void:
-	if (owner.direction == owner.DIRECTION_RIGHT):
-		owner.direction = owner.DIRECTION_LEFT
-	elif (owner.direction == owner.DIRECTION_LEFT):
-		owner.direction = owner.DIRECTION_RIGHT
+

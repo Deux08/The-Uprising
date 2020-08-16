@@ -21,7 +21,8 @@ onready var stats: Stats = $Stats
 onready var health_bar: Control = $HealthBar
 onready var attack_radius: Area2D = $AttackRadius
 onready var hitbox: Area2D = $HitBox
-onready var damage_source: DamageSource = $DamageSource
+onready var attack_region: DamageSource = $AttackRegion
+export(bool) var enable_blood = true
 
 func take_damage(source: Hit) -> void:
 	stats.take_damage(source)
@@ -33,7 +34,7 @@ func deactivate() -> void:
 	remove_child(health_bar)
 	remove_child(attack_radius)
 	remove_child(hitbox)
-	remove_child(damage_source)
+	remove_child(attack_region)
 	remove_child(raycast)
 	remove_child(attack_trigger)
 	remove_child(stats)

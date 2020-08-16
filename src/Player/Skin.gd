@@ -1,6 +1,7 @@
 extends Node2D
 
 signal animation_finished(name)
+signal attackRegion
 
 onready var anim: AnimationPlayer = $AnimationPlayer
 onready var sprite: AnimatedSprite = $Alwin

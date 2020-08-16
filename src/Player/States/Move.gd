@@ -36,7 +36,6 @@ func unhandled_input(event: InputEvent) -> void:
 		
 	if event.is_action_pressed("attack"):
 		_state_machine.transition_to("Move/Attack")
-		print("Attack")
 	
 	if owner.is_on_floor() and event.is_action_pressed("jump"):
 		_state_machine.transition_to("Move/Air", { impulse = jump_impulse })
