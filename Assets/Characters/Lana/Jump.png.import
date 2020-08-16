@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lpcfemaleplatepreview2.png-4a6f98d35412d640d9693aebcfcd98ab.stex"
+path="res://.import/Jump.png-1542c486d9df7222036bded1b3e62f30.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Lana/lpcfemaleplatepreview2.png"
-dest_files=[ "res://.import/lpcfemaleplatepreview2.png-4a6f98d35412d640d9693aebcfcd98ab.stex" ]
+source_file="res://Assets/Characters/Lana/Jump.png"
+dest_files=[ "res://.import/Jump.png-1542c486d9df7222036bded1b3e62f30.stex" ]
 
 [params]
 

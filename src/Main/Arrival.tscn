@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://src/MapAsset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
@@ -13,7 +13,9 @@
 [ext_resource path="res://src/NPC/Enemy/EnemyTemplate.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/Objects/Checkpoint.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/Autoload/SceneChanger.tscn" type="PackedScene" id=13]
-[ext_resource path="res://src/Main/Arrival.gd" type="Script" id=14]
+[ext_resource path="res://Assets/Characters/Lana/Attack1.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Characters/NPCs/1 Old_man/Old_man_attack.png" type="Texture" id=15]
+[ext_resource path="res://src/Combat/DamageSource.tscn" type="PackedScene" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -25,10 +27,61 @@ extents = Vector2( 10, 10.0067 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 10, 65.9808 )
 
-[node name="Arrival" type="Node2D"]
-script = ExtResource( 14 )
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 720, 0, 180, 180 )
 
-[node name="SceneChanger" parent="." instance=ExtResource( 13 )]
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 900, 0, 180, 180 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 1080, 0, 180, 180 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 690.6, 17.3789 )
+
+[node name="Arrival" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -236,7 +289,7 @@ material = null
 position = Vector2( 2644.08, 126.376 )
 shape = SubResource( 4 )
 
-[node name="FinalDialogue" parent="." instance=ExtResource( 9 )]
+[node name="DialogueNode7" parent="." instance=ExtResource( 9 )]
 position = Vector2( 245.967, -13.988 )
 collision_mask = 2147483648
 actor_1_text_color = Color( 0.854902, 0.133333, 0.133333, 1 )
@@ -246,7 +299,13 @@ actor_2 = NodePath("../Lana")
 dialogue_lines = [ "actor_1", "MURDERER !", "HE HAS KILLED MANY OF OUR FRIENDS", "KILL HIM !!!", "actor_2", "DON'T !!! We have wiped out his other team members, we should keep him as a hostage", "KNOCK HIM OUT !", "end_dialogue" ]
 auto = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FinalDialogue"]
+[node name="speaker_name" parent="DialogueNode7/dialogue_placer" index="1"]
+material = null
+
+[node name="next" parent="DialogueNode7/dialogue_placer" index="4"]
+material = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueNode7"]
 position = Vector2( 4146.17, 266.513 )
 shape = SubResource( 4 )
 
@@ -427,7 +486,36 @@ position = Vector2( 1235.49, 97.3441 )
 
 [node name="Checkpoint4" parent="." instance=ExtResource( 12 )]
 position = Vector2( 2647.65, 161.871 )
-[connection signal="dialogue_finished" from="FinalDialogue" to="." method="_on_FinalDialogue_dialogue_finished"]
+
+[node name="SceneChanger" parent="." instance=ExtResource( 13 )]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 4470.02, 307.078 )
+scale = Vector2( 0.524167, 0.568022 )
+frames = SubResource( 8 )
+frame = 2
+playing = true
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+position = Vector2( 4435.33, 301.466 )
+scale = Vector2( 0.826555, 0.79501 )
+frames = SubResource( 13 )
+
+[node name="DamageSource" parent="." instance=ExtResource( 16 )]
+position = Vector2( 1328.38, 280.284 )
+is_instakill = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageSource"]
+position = Vector2( 616.747, 27.9076 )
+shape = SubResource( 14 )
+
+[node name="DamageSource2" parent="." instance=ExtResource( 16 )]
+position = Vector2( 1328.38, 280.284 )
+is_instakill = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageSource2"]
+position = Vector2( 1959.94, -45.5059 )
+shape = SubResource( 14 )
 
 [editable path="Player"]
 
@@ -444,3 +532,5 @@ position = Vector2( 2647.65, 161.871 )
 [editable path="DialogueNode5"]
 
 [editable path="DialogueNode6"]
+
+[editable path="DialogueNode7"]
